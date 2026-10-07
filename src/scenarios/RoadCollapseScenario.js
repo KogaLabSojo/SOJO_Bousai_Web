@@ -120,7 +120,6 @@ export class RoadCollapseScenario extends Scenario {
         this.state = 'collapsed';
         this.ctx.quake = 0;
         this.ctx.ui.refresh();
-        this.ctx.ui.showTips();
       }
     }
     this.uniforms.uCrack.value = this.crack;
@@ -132,14 +131,5 @@ export class RoadCollapseScenario extends Scenario {
     const d = Math.max(0, Math.hypot(info.cameraLocal.x, info.cameraLocal.z - holeZ) - 1.5 * this.crack);
     return `路面の損傷: <b>${pct}%</b><div class="meter"><i style="width:${pct}%"></i></div>` +
       (this.crack > 0.1 ? `陥没部までの距離: 約 ${d.toFixed(1)} m` : '');
-  }
-
-  get tips() {
-    return [
-      '道路のひび割れ・段差・へこみは、下に<b>空洞</b>ができているサインのことがある。',
-      '陥没の周囲は見た目以上に広く崩れる。<b>近づかず、のぞき込まない</b>。',
-      '地震後や大雨の後は、路面の異常に注意して歩く・運転する。',
-      '見つけたら警察(110)や道路緊急ダイヤル<b>#9910</b>へ通報する。',
-    ];
   }
 }

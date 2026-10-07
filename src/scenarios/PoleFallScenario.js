@@ -183,7 +183,6 @@ export class PoleFallScenario extends Scenario {
         this.ctx.quake = 0;
         this.shaker.position.set(0, 0, 0);
         this.ctx.ui.refresh();
-        this.ctx.ui.showTips();
       }
     }
 
@@ -334,14 +333,5 @@ export class PoleFallScenario extends Scenario {
     const cls = danger ? 'danger' : 'safe';
     const msg = danger ? '危険範囲：電柱の高さより近い' : '電柱の高さ以上離れている';
     return `最も近い電柱まで: <b>${nearest.toFixed(1)} m</b>（高さ 約${this.poleHeight.toFixed(0)} m）\n<span class="${cls}">${msg}</span>`;
-  }
-
-  get tips() {
-    return [
-      '地震のときは電柱・電線から離れる。倒れると<b>電柱の高さ（約8〜16m）</b>の範囲が危険。',
-      '1本が倒れると、電線に引っ張られて<b>隣の電柱も連鎖的に倒れる</b>ことがある。',
-      '垂れ下がった・切れた電線には<b>絶対に近づかない・触れない</b>（感電の危険）。',
-      '見つけたら電力会社や110番へ連絡する。',
-    ];
   }
 }

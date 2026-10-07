@@ -38,7 +38,7 @@ export class XRController {
   async start() {
     const session = await navigator.xr.requestSession('immersive-ar', {
       requiredFeatures: ['hit-test'],
-      optionalFeatures: ['dom-overlay', 'local-floor'],
+      optionalFeatures: ['dom-overlay', 'local-floor', 'camera-access'],
       domOverlay: { root: this.overlayRoot },
     });
     const renderer = this.stage.renderer;

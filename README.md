@@ -14,10 +14,21 @@ Unity 版（[KogaLabSojo/preparedness](https://github.com/KogaLabSojo/preparedne
 ## 対応端末
 
 - **Android (Chrome)**: WebXR で床を検出し、タップした方向に配置。歩いて回り込める（6DoF）。
-- **iPhone (Safari) など WebXR 非対応端末**: 背面カメラ映像にジャイロで向きを合わせた 3D を重ねる簡易AR（3DoF）。床は目の高さの下と仮定。
+- **iPhone (Safari) など WebXR 非対応のスマホ**: [8th Wall Engine](https://github.com/8thwall/engine) の SLAM で 6DoF。開始時の端末の高さを 1.5 m とみなしてスケールを決め、正面に自動配置する。
+- **8th Wall が使えない環境**: 背面カメラ映像にジャイロで向きを合わせた 3D を重ねる簡易AR（3DoF）。
 - **PC**: カメラ映像（なければ背景色）＋ドラッグで見回し。動作確認用。
 
+URL に `?ar=8thwall`（Android でも 8th Wall を使う）や `?ar=gyro`（簡易ARを使う）を付けると、モードを強制できます。
+
 カメラ・ジャイロ・WebXR はいずれも **HTTPS が必須**です。
+
+### 人物のオクルージョン
+
+MediaPipe の人物セグメンテーション（selfie_segmenter）で、カメラに映った手や人を CG より手前に表示します。8th Wall・簡易AR・Android WebXR（`camera-access` が使える場合）で有効で、HUD の「人物の遮蔽」で ON/OFF できます。奥行きは推定していないため、人物は常に CG の手前として扱います。
+
+### 8th Wall Engine のライセンス
+
+6DoF トラッキングには Niantic Spatial, Inc. の 8th Wall Engine（Distributed Engine Binary）を jsDelivr から読み込んで使っています。エンジンは © Niantic Spatial, Inc. の著作物で、[8th Wall Engine License Agreement](https://github.com/8thwall/engine/blob/main/LICENSE) に従います（無保証。改変・リバースエンジニアリング禁止）。
 
 ## 開発
 
@@ -64,7 +75,9 @@ src/
   main.js                  メニュー・AR開始・配置・HUD
   core/Stage.js            three.js の描画・ライト・影
   core/XRController.js     WebXR (immersive-ar + hit-test)
+  core/SlamController.js   8th Wall Engine の SLAM（WebXR 非対応スマホの 6DoF）
   core/FallbackController.js  カメラ映像 + ジャイロの簡易AR
+  core/PeopleOcclusion.js  MediaPipe による人物オクルージョン
   core/AudioFX.js          効果音（Web Audio で合成）
   scenarios/*.js           各災害シナリオ
   shaders/*.glsl           水面・路面のシェーダー

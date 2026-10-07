@@ -12,15 +12,20 @@ const CAMERA_LONG_SIDE_FOV = 65;
 export class FallbackController {
   /** iOS 13+ はジャイロの許可が必要。ユーザー操作のハンドラ内で最初に呼ぶこと */
   static async requestOrientationPermission() {
-    const DOE = window.DeviceOrientationEvent;
-    if (DOE && typeof DOE.requestPermission === 'function') {
+    const request = async (Evt) => {
+      if (!Evt || typeof Evt.requestPermission !== 'function') return true;
       try {
-        return (await DOE.requestPermission()) === 'granted';
+        return (await Evt.requestPermission()) === 'granted';
       } catch {
         return false;
       }
-    }
-    return true;
+    };
+    // 2 つ目の要求もユーザー操作として扱われるよう、await せずに同時に出す
+    const [orientation] = await Promise.all([
+      request(window.DeviceOrientationEvent),
+      request(window.DeviceMotionEvent),
+    ]);
+    return orientation;
   }
 
   constructor(stage, video) {
@@ -101,19 +106,6 @@ export class FallbackController {
       cam.position.y += (Math.random() - 0.5) * 0.03 * s;
     }
     this._updateFov();
-  }
-
-  /** 現在見ている方向の地面上、distance 先に基準点を置く */
-  placeInFront(distance) {
-    const cam = this.stage.camera;
-    const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(cam.quaternion);
-    fwd.y = 0;
-    if (fwd.lengthSq() < 1e-4) fwd.set(0, 0, -1);
-    fwd.normalize();
-    const pos = new THREE.Vector3(cam.position.x, 0, cam.position.z).addScaledVector(fwd, distance);
-    const eye = new THREE.Vector3(cam.position.x, 0, cam.position.z);
-    if (distance < 0.01) eye.sub(fwd);
-    this.stage.placeAnchor(pos, eye);
   }
 
   stop() {

@@ -48,11 +48,6 @@ export class Scenario {
     return '';
   }
 
-  /** 体験後に出す防災ポイント */
-  get tips() {
-    return [];
-  }
-
   dispose() {
     this.root.traverse((obj) => {
       if (obj.geometry) obj.geometry.dispose();

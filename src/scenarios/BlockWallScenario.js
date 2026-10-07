@@ -144,7 +144,6 @@ export class BlockWallScenario extends Scenario {
       if (this.state === 'falling' && this.elapsed > 3.5) {
         this.state = 'done';
         this.ctx.ui.refresh();
-        this.ctx.ui.showTips();
       }
     }
   }
@@ -221,14 +220,5 @@ export class BlockWallScenario extends Scenario {
     const cls = danger ? 'danger' : 'safe';
     const msg = danger ? '危険範囲：塀の高さより近い' : '塀の高さ以上離れている';
     return `塀までの距離: <b>${d.toFixed(1)} m</b>（塀の高さ ${this.totalHeight.toFixed(2)} m）\n<span class="${cls}">${msg}</span>`;
-  }
-
-  get tips() {
-    return [
-      '地震の揺れを感じたら、ブロック塀・門柱・自動販売機から<b>すぐに離れる</b>。',
-      '倒れたブロック塀は<b>塀の高さ以上</b>の範囲に散らばる。通学路では塀側を歩かない。',
-      '高さ2.2m超・控え壁なし・ひび割れや傾きのある塀は特に危険（建築基準法の基準を満たさない可能性）。',
-      '自宅の塀は自治体の点検・撤去補助制度を確認しよう。',
-    ];
   }
 }

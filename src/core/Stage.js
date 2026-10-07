@@ -80,4 +80,17 @@ export class Stage {
     this.sun.target.position.copy(position);
     this.sun.position.copy(position).add(this.sunOffset);
   }
+
+  /** カメラが見ている方向の床 (y = 0) 上、distance 先に基準点を置く */
+  placeInFrontOfCamera(distance) {
+    const cam = this.camera;
+    const fwd = new THREE.Vector3(0, 0, -1).applyQuaternion(cam.quaternion);
+    fwd.y = 0;
+    if (fwd.lengthSq() < 1e-4) fwd.set(0, 0, -1);
+    fwd.normalize();
+    const feet = new THREE.Vector3(cam.position.x, 0, cam.position.z);
+    const pos = feet.clone().addScaledVector(fwd, distance);
+    if (distance < 0.01) feet.sub(fwd);
+    this.placeAnchor(pos, feet);
+  }
 }

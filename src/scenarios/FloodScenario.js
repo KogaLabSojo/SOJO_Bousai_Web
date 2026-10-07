@@ -118,7 +118,7 @@ export class FloodScenario extends Scenario {
   }
 
   get slider() {
-    if (this.ctx.mode === 'xr') return null;
+    if (this.ctx.mode !== 'fallback') return null;
     return {
       label: '目の高さ',
       min: 1.0,
@@ -138,7 +138,6 @@ export class FloodScenario extends Scenario {
     if (!preset) return;
     this.selected = id;
     this.target = preset.depth;
-    this.tipsShown = false;
     this.ctx.ui.refresh();
   }
 
@@ -192,11 +191,6 @@ export class FloodScenario extends Scenario {
     this.ctx.ui.setUnderwater(under);
     this.ctx.audio.setLoop('water', this.level > 0.02 ? Math.min(0.35, 0.1 + this.level * 0.2) : 0);
 
-    if (this.target > 0 && Math.abs(this.target - this.level) < 0.005 && !this.tipsShown) {
-      this.tipsShown = true;
-      this.ctx.ui.refresh();
-      if (this.target >= WAIST) this.ctx.ui.showTips();
-    }
   }
 
   _resolveBand(depth, eye) {
@@ -217,16 +211,6 @@ export class FloodScenario extends Scenario {
       `浸水深(地面基準): <b>${Math.round(this.level * 100)} cm</b> <span class="${cls}">[${band.label}]</span>\n` +
       `水面まで(目線): ${Math.round(clearance * 100)} cm`
     );
-  }
-
-  get tips() {
-    return [
-      '<b>膝(50cm)</b>を超えると大人でも歩けない。浸水が始まる前に避難を完了する。',
-      '避難が間に合わなければ、無理に外へ出ず<b>建物の2階以上へ垂直避難</b>。',
-      '水の中はマンホールや側溝が見えない。やむを得ず歩くときは棒で足もとを確かめる。',
-      '車は30cmでエンジン停止、50cmで浮く。冠水した道路やアンダーパスには入らない。',
-      'ハザードマップで自宅・学校・職場の想定浸水深を確認しておこう。',
-    ];
   }
 
   dispose() {

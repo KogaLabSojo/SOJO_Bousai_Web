@@ -8,6 +8,7 @@
   </head>
   <body>
     <video id="camera-feed" playsinline muted autoplay></video>
+    <canvas id="slam-feed"></canvas>
     <canvas id="scene"></canvas>
 
     <div id="overlay">
@@ -51,6 +52,10 @@
           </button>
         </div>
         <p class="footnote">周囲の安全を確認し、広い場所で体験してください。</p>
+        <p class="credit">
+          6DoF tracking: 8th Wall Engine © Niantic Spatial, Inc. —
+          <a href="https://github.com/8thwall/engine/blob/main/LICENSE" target="_blank" rel="noopener">license &amp; disclaimer of warranties</a>
+        </p>
       </section>
 
       <section id="hud" hidden>
@@ -67,11 +72,6 @@
             <output></output>
           </label>
           <div id="hud-actions"></div>
-        </div>
-        <div id="tip" hidden>
-          <h3>防災ポイント</h3>
-          <div class="tip-body"></div>
-          <button class="primary" id="tip-close">閉じる</button>
         </div>
       </section>
 
