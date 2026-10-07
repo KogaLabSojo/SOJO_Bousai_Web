@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { EnvironmentLighting } from './EnvironmentLighting.js';
 
 export class Stage {
   constructor(canvas) {
@@ -18,14 +18,11 @@ export class Stage {
     this.camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.05, 200);
     this.scene.add(this.camera);
 
-    const pmrem = new THREE.PMREMGenerator(renderer);
-    this.scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-    this.scene.environmentIntensity = 0.6;
-
     this.hemi = new THREE.HemisphereLight(0xeef4ff, 0x5a5448, 1.1);
     this.scene.add(this.hemi);
 
-    const sun = new THREE.DirectionalLight(0xffffff, 2.2);
+    this.sunIntensity = 2.2;
+    const sun = new THREE.DirectionalLight(0xffffff, this.sunIntensity);
     sun.castShadow = true;
     sun.shadow.mapSize.set(2048, 2048);
     sun.shadow.camera.left = -14;
@@ -39,6 +36,8 @@ export class Stage {
     this.sun = sun;
     this.scene.add(sun, sun.target);
     this.sunOffset = new THREE.Vector3(4, 10, 6);
+
+    this.env = new EnvironmentLighting(this);
 
     // 災害コンテンツを置く基準点（床の上、+Z が体験者の方向）
     this.anchor = new THREE.Group();

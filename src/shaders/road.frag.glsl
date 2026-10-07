@@ -8,6 +8,9 @@ uniform vec3 uLightDir;
 uniform vec3 uLightColor;
 uniform vec3 uAmbient;
 uniform vec2 uHalfSize;
+uniform samplerCube uEnvMap;  // カメラ映像から作った環境キューブマップ
+uniform float uEnvMix;
+uniform float uEnvGain;
 
 varying vec3 vWorldPos;
 varying vec2 vUv;
@@ -47,7 +50,10 @@ void main() {
   col *= mix(0.06, 1.0, exp(-vDrop * 2.6));
 
   float diff = max(dot(N, normalize(uLightDir)), 0.0);
-  vec3 lit = col * (uAmbient + uLightColor * diff);
+  // 環境光：キューブマップの低解像度ミップを拡散光の近似として使う
+  vec3 envDiffuse = textureCube(uEnvMap, N, 6.0).rgb * uEnvGain;
+  vec3 ambient = mix(uAmbient, envDiffuse, uEnvMix);
+  vec3 lit = col * (ambient + uLightColor * diff);
 
   // 道路の端はディザでフェードして現実の床になじませる
   vec2 edge = uHalfSize - abs(vLocal);

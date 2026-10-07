@@ -63,6 +63,7 @@ export class FloodScenario extends Scenario {
       uSkyColor: { value: new THREE.Color(0.55, 0.62, 0.7) },
       uCenter: { value: new THREE.Vector2() },
       uRadius: { value: RADIUS },
+      ...this.ctx.stage.env.uniforms,
     };
 
     const geo = new THREE.PlaneGeometry(RADIUS * 2, RADIUS * 2, 180, 180).rotateX(-Math.PI / 2);

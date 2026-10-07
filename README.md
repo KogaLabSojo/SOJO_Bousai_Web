@@ -26,6 +26,10 @@ URL に `?ar=8thwall`（Android でも 8th Wall を使う）や `?ar=gyro`（簡
 
 MediaPipe の人物セグメンテーション（selfie_segmenter）で、カメラに映った手や人を CG より手前に表示します。8th Wall・簡易AR・Android WebXR（`camera-access` が使える場合）で有効で、HUD の「人物の遮蔽」で ON/OFF できます。奥行きは推定していないため、人物は常に CG の手前として扱います。
 
+### IBL（環境光・映り込み）
+
+カメラ映像を撮影時の向きで球面に投影してキューブマップに蓄積し、PMREM にかけて `scene.environment` にしています。見回すほど周囲の環境が埋まり、ブロック・電柱などの PBR マテリアルと、水面・路面の GLSL シェーダーの環境光・映り込みに使われます。Android WebXR で `light-estimation` が使えるときは、ARCore の HDR 環境マップと主光源の向きを優先します。
+
 ### 8th Wall Engine のライセンス
 
 6DoF トラッキングには Niantic Spatial, Inc. の 8th Wall Engine（Distributed Engine Binary）を jsDelivr から読み込んで使っています。エンジンは © Niantic Spatial, Inc. の著作物で、[8th Wall Engine License Agreement](https://github.com/8thwall/engine/blob/main/LICENSE) に従います（無保証。改変・リバースエンジニアリング禁止）。
@@ -74,6 +78,7 @@ blender -b --factory-startup -P tools/convert_assets.py
 src/
   main.js                  メニュー・AR開始・配置・HUD
   core/Stage.js            three.js の描画・ライト・影
+  core/EnvironmentLighting.js  カメラ映像・光源推定からの IBL
   core/XRController.js     WebXR (immersive-ar + hit-test)
   core/SlamController.js   8th Wall Engine の SLAM（WebXR 非対応スマホの 6DoF）
   core/FallbackController.js  カメラ映像 + ジャイロの簡易AR

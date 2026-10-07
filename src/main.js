@@ -147,7 +147,9 @@ async function startScenario(id) {
     }
   }
   ctx.mode = mode;
-  occlusion.setSource(occlusionSource());
+  const source = cameraSource();
+  occlusion.setSource(source);
+  stage.env.setSource(source);
 
   el.menu.hidden = true;
   el.hud.hidden = false;
@@ -190,6 +192,7 @@ async function exitScenario() {
   audio.stopAll();
   el.underwater.classList.remove('on');
   occlusion.setSource(null);
+  stage.env.setSource(null);
 
   if (mode === 'xr') await xr.stop();
   else if (mode === 'slam') slam.stop();
@@ -209,7 +212,8 @@ xr.onEnd = () => {
   if (mode === 'xr') exitScenario();
 };
 
-function occlusionSource() {
+/** オクルージョンと IBL に使うカメラ映像 */
+function cameraSource() {
   if (mode === 'xr') {
     const features = stage.renderer.xr.getSession()?.enabledFeatures;
     return features?.includes('camera-access') ? { kind: 'xr' } : null;
@@ -371,6 +375,7 @@ stage.renderer.setAnimationLoop((_time, frame) => {
     }
   }
 
+  stage.env.update(now, frame);
   occlusion.update(now, frame);
   stage.renderer.render(stage.scene, stage.camera);
 });

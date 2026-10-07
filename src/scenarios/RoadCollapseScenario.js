@@ -31,6 +31,7 @@ export class RoadCollapseScenario extends Scenario {
       uLightColor: { value: new THREE.Color(0.85, 0.85, 0.82) },
       uAmbient: { value: new THREE.Color(0.42, 0.43, 0.46) },
       uHalfSize: { value: new THREE.Vector2(ROAD_W / 2, ROAD_L / 2) },
+      ...this.ctx.stage.env.uniforms,
     };
 
     const geo = new THREE.PlaneGeometry(ROAD_W, ROAD_L, 200, 450).rotateX(-Math.PI / 2);

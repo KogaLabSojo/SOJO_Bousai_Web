@@ -18,6 +18,9 @@ uniform vec3 uAmbient;
 uniform vec3 uSkyColor;
 uniform vec2 uCenter;
 uniform float uRadius;
+uniform samplerCube uEnvMap;  // カメラ映像から作った環境キューブマップ
+uniform float uEnvMix;
+uniform float uEnvGain;
 
 varying vec3 vWorldPos;
 
@@ -56,9 +59,14 @@ void main() {
   float fresnel = pow(1.0 - NdotV, 5.0);
   float rim = pow(1.0 - NdotV, uRimPower);
 
-  vec3 col = albedo * (1.0 - uMetallic * 0.5) * (uAmbient + uLightColor * diff);
+  // 周囲の映り込みと環境光（環境マップがまだ無いときは固定色）
+  vec3 R = reflect(-V, N);
+  vec3 reflection = mix(uSkyColor, textureCube(uEnvMap, R, (1.0 - uSmoothness) * 6.0).rgb * uEnvGain, uEnvMix);
+  vec3 ambient = mix(uAmbient, textureCube(uEnvMap, N, 6.0).rgb * uEnvGain, uEnvMix);
+
+  vec3 col = albedo * (1.0 - uMetallic * 0.5) * (ambient + uLightColor * diff);
   col += uLightColor * specColor * spec;
-  col += uSkyColor * mix(specColor, vec3(1.0), fresnel) * 0.6;
+  col += reflection * mix(specColor, vec3(1.0), fresnel) * 0.6;
   col += uRimColor * rim;
 
   float alpha = clamp(uFade + fresnel * 0.35 + spec * 0.15, 0.0, 0.96);
