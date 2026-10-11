@@ -229,6 +229,7 @@ async function exitScenario() {
   scenario?.dispose();
   scenario = null;
   placed = false;
+  setUiHidden(false);
   ctx.quake = 0;
   audio.stopAll();
   el.underwater.classList.remove('on');
@@ -303,8 +304,40 @@ xr.onSelect = () => {
   if (!scenario || placed || !xr.hasHit) return;
   placeAt(xr.hitPosition, { kind: xr.hitKind, normal: xr.hitNormal, floorY: xr.floorHeight });
 };
-xr.onSelectStart = () => placed && scenario?.onPressStart();
-xr.onSelectEnd = () => placed && scenario?.onPressEnd();
+xr.onSelectStart = () => {
+  beginTap(null);
+  if (placed) scenario?.onPressStart();
+};
+xr.onSelectEnd = () => {
+  if (placed) scenario?.onPressEnd();
+  endTap(null);
+};
+
+// ---------- 画面タップで UI の表示・非表示 ----------
+// 配置後の短いタップだけを切り替えに使う（長押し・ドラッグ・配置のタップは除く）
+const TAP_MS = 300;
+const TAP_MOVE = 12;
+let tap = null;
+let uiHintShown = false;
+
+function beginTap(e) {
+  tap = placed ? { t: performance.now(), x: e?.clientX ?? 0, y: e?.clientY ?? 0 } : null;
+}
+
+function endTap(e) {
+  if (!tap || !scenario || !placed) return;
+  const moved = e ? Math.hypot(e.clientX - tap.x, e.clientY - tap.y) : 0;
+  if (performance.now() - tap.t < TAP_MS && moved < TAP_MOVE) setUiHidden(!el.hud.classList.contains('ui-hidden'));
+  tap = null;
+}
+
+function setUiHidden(hidden) {
+  el.hud.classList.toggle('ui-hidden', hidden);
+  if (hidden && !uiHintShown) {
+    uiHintShown = true;
+    toast('もう一度タップすると表示します');
+  }
+}
 
 // 8th Wall では床が y = 0 なので、画面中央からの光線と床の交点にリングを出す
 const groundPlane = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
@@ -322,12 +355,17 @@ function updateSlamReticle() {
 }
 
 const canvas = stage.renderer.domElement;
-canvas.addEventListener('pointerdown', () => {
+canvas.addEventListener('pointerdown', (e) => {
   if (!scenario || !mode || mode === 'xr') return;
+  beginTap(e);
   if (placed) scenario.onPressStart();
   else if (mode === 'slam' && slamHasHit) placeAt(slamHit.clone());
 });
-window.addEventListener('pointerup', () => mode && mode !== 'xr' && scenario?.onPressEnd());
+window.addEventListener('pointerup', (e) => {
+  if (!mode || mode === 'xr') return;
+  scenario?.onPressEnd();
+  endTap(e);
+});
 window.addEventListener('pointercancel', () => scenario?.onPressEnd());
 
 function replace() {
@@ -338,6 +376,7 @@ function replace() {
     placed = false;
     xr.searching = true;
     stage.anchor.visible = false;
+    setUiHidden(false);
   }
   renderHud();
 }

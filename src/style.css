@@ -231,6 +231,12 @@ button {
 
 #hud > * {
   pointer-events: auto;
+  transition: opacity 0.2s;
+}
+
+#hud.ui-hidden > * {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .hud-top {
