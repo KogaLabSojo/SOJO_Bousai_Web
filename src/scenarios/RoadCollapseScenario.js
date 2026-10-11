@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Scenario } from './Scenario.js';
 import { loadTexture } from '../core/assets.js';
+import { Particles, Chips } from '../core/Effects.js';
 import noise from '../shaders/noise.glsl?raw';
 import roadVert from '../shaders/road.vert.glsl?raw';
 import roadFrag from '../shaders/road.frag.glsl?raw';
@@ -50,6 +51,19 @@ export class RoadCollapseScenario extends Scenario {
     // 体験者が道路の上に立つように、道路は手前側に長く伸ばす
     this.road.position.z = 1.0;
     this.uniforms.uCenter.value.set(0, -1.0);
+    this.holeZ = this.road.position.z + this.uniforms.uCenter.value.y;
+
+    this.dust = new Particles({
+      count: 700,
+      color: 0x9d968a,
+      sizeStart: 0.3,
+      sizeEnd: 1.8,
+      opacity: 0.5,
+      drag: 1.0,
+      gravity: -0.05,
+    });
+    this.chips = new Chips({ count: 160, color: 0x3c3c3e, size: 0.05 });
+    this.root.add(this.dust.points, this.chips.mesh);
 
     this.reset();
   }
@@ -87,7 +101,15 @@ export class RoadCollapseScenario extends Scenario {
     this.pressing = false;
     this.nextCrackSound = 0;
     this.uniforms.uCrack.value = 0;
+    this.dust?.reset();
+    this.chips?.reset();
     this.ctx.quake = 0;
+  }
+
+  /** 陥没の中心から半径 r 付近のランダムな点 */
+  _ringPoint(r) {
+    const a = Math.random() * Math.PI * 2;
+    return { x: Math.cos(a) * r, z: this.holeZ + Math.sin(a) * r, a };
   }
 
   update(dt) {
@@ -99,6 +121,16 @@ export class RoadCollapseScenario extends Scenario {
         if (this.elapsed > this.nextCrackSound) {
           this.ctx.audio.crack(this.crack);
           this.nextCrackSound = this.elapsed + 0.08 + Math.random() * 0.3;
+          // ひびが走るたびに割れ目から砂ぼこりと小石が跳ねる
+          const p = this._ringPoint(Math.random() * 2.2 * this.crack + 0.1);
+          for (let i = 0; i < 4; i++) {
+            this.dust.emit({
+              x: p.x, y: 0.03, z: p.z,
+              vx: (Math.random() - 0.5) * 0.4, vy: 0.2 + Math.random() * 0.3, vz: (Math.random() - 0.5) * 0.4,
+              life: 1 + Math.random(), scale: 0.35,
+            });
+          }
+          this.chips.emit(p.x, 0.03, p.z, (Math.random() - 0.5) * 0.8, 0.8 + Math.random(), (Math.random() - 0.5) * 0.8, 0.5, 3);
         }
         this.ctx.quake = this.crack * 0.3;
         if (this.crack >= COLLAPSE_AT) {
@@ -117,6 +149,18 @@ export class RoadCollapseScenario extends Scenario {
       this.crack = COLLAPSE_AT + (1 - COLLAPSE_AT) * (1 - Math.pow(1 - t, 3));
       this.ctx.quake = 0.8 * (1 - t);
       if (Math.random() < 0.3) this.ctx.audio.impact(0.4 * (1 - t) + 0.1, 0.8);
+      // 縁が崩れて穴へ落ちていく破片と、穴から立ちのぼる土煙
+      const r = 1.5 * this.crack;
+      for (let i = 0; i < 3 * (1 - t) + 1; i++) {
+        const p = this._ringPoint(r * (0.85 + Math.random() * 0.25));
+        this.chips.emit(p.x, 0.02, p.z, -Math.cos(p.a) * 0.6, 0.3 + Math.random() * 0.8, -Math.sin(p.a) * 0.6, 1.4, 5);
+        const q = this._ringPoint(r * Math.random());
+        this.dust.emit({
+          x: q.x, y: -0.2, z: q.z,
+          vx: Math.cos(q.a) * 0.6, vy: 0.6 + Math.random() * 1.2, vz: Math.sin(q.a) * 0.6,
+          life: 2 + Math.random() * 1.5, scale: 1.2,
+        });
+      }
       if (t >= 1) {
         this.state = 'collapsed';
         this.ctx.quake = 0;
@@ -124,6 +168,9 @@ export class RoadCollapseScenario extends Scenario {
       }
     }
     this.uniforms.uCrack.value = this.crack;
+    this.chips.holes = this.state === 'intact' ? [] : [{ x: 0, z: this.holeZ, r: 1.3 * this.crack }];
+    this.dust.update(dt);
+    this.chips.update(dt);
   }
 
   status(info) {

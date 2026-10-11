@@ -59,7 +59,33 @@ export class Stage {
     this.grid.visible = false;
     this.anchor.add(this.grid);
 
+    // 配置位置を示すリング（床はオレンジ、壁は水色）
+    this.reticle = new THREE.Mesh(
+      new THREE.RingGeometry(0.12, 0.16, 40).rotateX(-Math.PI / 2),
+      new THREE.MeshBasicMaterial({ color: 0xffb020, transparent: true, opacity: 0.9, depthTest: false }),
+    );
+    this.reticle.renderOrder = 999;
+    this.reticle.matrixAutoUpdate = false;
+    this.reticle.visible = false;
+    this.scene.add(this.reticle);
+
     window.addEventListener('resize', () => this.resize());
+  }
+
+  setReticle(matrix, onWall = false) {
+    this.reticle.matrix.copy(matrix);
+    this.reticle.material.color.set(onWall ? 0x3ad1ff : 0xffb020);
+  }
+
+  /** 基準点を水平回転・前後移動する（微調整用）。forward は体験者から離れる向きが正 */
+  nudgeAnchor(yaw, forward) {
+    const a = this.anchor;
+    a.rotation.y += yaw;
+    // +Z が体験者側なので、離れる向きは -Z
+    a.position.add(new THREE.Vector3(0, 0, -forward).applyAxisAngle(new THREE.Vector3(0, 1, 0), a.rotation.y));
+    a.updateMatrixWorld(true);
+    this.sun.target.position.copy(a.position);
+    this.sun.position.copy(a.position).add(this.sunOffset);
   }
 
   resize() {

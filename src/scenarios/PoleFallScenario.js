@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Scenario } from './Scenario.js';
 import { loadGLTF } from '../core/assets.js';
+import { Particles, Chips, Flash } from '../core/Effects.js';
 
 const G = 9.81;
 const SPACING = 7;
@@ -72,8 +73,29 @@ export class PoleFallScenario extends Scenario {
       }
     }
 
-    this.dust = this._createDust();
-    this.root.add(this.dust.points);
+    this.dust = new Particles({
+      count: 700,
+      color: 0xb8a990,
+      sizeStart: 0.3,
+      sizeEnd: 1.6,
+      opacity: 0.5,
+      drag: 1.1,
+      gravity: -0.04,
+    });
+    this.sparks = new Particles({
+      count: 400,
+      color: 0xffc46b,
+      additive: true,
+      gravity: 9.81,
+      drag: 0.4,
+      sizeStart: 0.05,
+      sizeEnd: 0.015,
+      opacity: 1,
+      floorY: 0.01,
+    });
+    this.chips = new Chips({ count: 90, color: 0x9a9a95, size: 0.045 });
+    this.flash = new Flash();
+    this.root.add(this.dust.points, this.sparks.points, this.chips.mesh, this.flash.light);
 
     this.reset();
     for (const w of this.wires) {
@@ -141,8 +163,11 @@ export class PoleFallScenario extends Scenario {
       p.landed = false;
       p.pivot.rotation.set(0, 0, 0);
       p.model.rotation.set(0, 0, 0);
+      p.landedAt = -1;
     }
     this.dust.reset();
+    this.sparks.reset();
+    this.chips.reset();
     this.ctx.quake = 0;
   }
 
@@ -174,6 +199,8 @@ export class PoleFallScenario extends Scenario {
           p.theta = p.pivot.rotation.x;
           p.omega = 0.3;
           this.ctx.audio.crack(0.8);
+          this._crumbleBase(p);
+          this._sparkAtArms(p, 1);
         }
         if (p.falling && !p.landed) this._stepPole(p, dt);
         if (!p.landed) allLanded = false;
@@ -186,8 +213,65 @@ export class PoleFallScenario extends Scenario {
       }
     }
 
+    // 地面に落ちた電線がしばらくショートして火花を散らす
+    for (const p of this.poles) {
+      if (p.landedAt < 0) continue;
+      const since = this.elapsed - p.landedAt;
+      if (since < 7 && Math.random() < dt * 2.2) this._sparkAtArms(p, 0.5);
+    }
+
     this._updateWires();
     this.dust.update(dt);
+    this.sparks.update(dt);
+    this.chips.update(dt);
+    this.flash.update(dt);
+  }
+
+  /** 電柱のローカル座標 → root 座標 */
+  _poleToRoot(p, v) {
+    return v.clone().applyEuler(p.model.rotation).applyEuler(p.pivot.rotation).add(p.pivot.position).add(this.shaker.position);
+  }
+
+  _sparkAtArms(p, strength) {
+    const ends = this.attachLocal.slice(0, 2);
+    const at = this._poleToRoot(p, ends[Math.floor(Math.random() * ends.length)]);
+    const n = Math.round(50 * strength);
+    for (let i = 0; i < n; i++) {
+      const sp = 1.5 + Math.random() * 4;
+      const a = Math.random() * Math.PI * 2;
+      this.sparks.emit({
+        x: at.x,
+        y: Math.max(0.05, at.y),
+        z: at.z,
+        vx: Math.cos(a) * sp,
+        vy: Math.random() * sp,
+        vz: Math.sin(a) * sp,
+        life: 0.3 + Math.random() * 0.6,
+      });
+    }
+    this.flash.fire(at, strength);
+    this.ctx.audio.zap(strength);
+  }
+
+  _crumbleBase(p) {
+    const base = p.pivot.position.clone().add(this.shaker.position);
+    for (let i = 0; i < 18; i++) {
+      const a = Math.random() * Math.PI * 2;
+      this.chips.emit(base.x + Math.cos(a) * 0.15, 0.1 + Math.random() * 0.3, base.z + Math.sin(a) * 0.15,
+        Math.cos(a) * (0.5 + Math.random()), 1 + Math.random() * 1.5, Math.sin(a) * (0.5 + Math.random()) + 0.5, 1, 6);
+    }
+    for (let i = 0; i < 25; i++) {
+      this.dust.emit({
+        x: base.x + (Math.random() - 0.5) * 0.4,
+        y: 0.1,
+        z: base.z + (Math.random() - 0.5) * 0.4,
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: 0.3 + Math.random() * 0.5,
+        vz: (Math.random() - 0.5) * 0.8,
+        life: 1.5 + Math.random(),
+        scale: 0.5,
+      });
+    }
   }
 
   _stepPole(p, dt) {
@@ -210,6 +294,7 @@ export class PoleFallScenario extends Scenario {
         } else {
           p.omega = 0;
           p.landed = true;
+          p.landedAt = this.elapsed;
         }
       }
     }
@@ -251,67 +336,27 @@ export class PoleFallScenario extends Scenario {
     }
   }
 
-  _createDust() {
-    const COUNT = 400;
-    const geo = new THREE.BufferGeometry();
-    const positions = new Float32Array(COUNT * 3);
-    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const velocities = new Float32Array(COUNT * 3);
-    const life = new Float32Array(COUNT);
-    const mat = new THREE.PointsMaterial({
-      color: 0xb8a990,
-      size: 0.25,
-      transparent: true,
-      opacity: 0.55,
-      depthWrite: false,
-    });
-    const points = new THREE.Points(geo, mat);
-    points.frustumCulled = false;
-    let cursor = 0;
-    return {
-      points,
-      spawn: (origin, dir, length) => {
-        for (let i = 0; i < 130; i++) {
-          const k = cursor++ % COUNT;
-          const s = Math.random() * length;
-          positions[k * 3] = origin.x + dir.x * s + (Math.random() - 0.5) * 0.4;
-          positions[k * 3 + 1] = 0.05;
-          positions[k * 3 + 2] = origin.z + dir.z * s + (Math.random() - 0.5) * 0.4;
-          velocities[k * 3] = (Math.random() - 0.5) * 1.2;
-          velocities[k * 3 + 1] = Math.random() * 0.8 + 0.2;
-          velocities[k * 3 + 2] = (Math.random() - 0.5) * 1.2;
-          life[k] = 1.5 + Math.random();
-        }
-      },
-      update: (dt) => {
-        let alive = 0;
-        for (let k = 0; k < COUNT; k++) {
-          if (life[k] <= 0) {
-            positions[k * 3 + 1] = -100;
-            continue;
-          }
-          alive++;
-          life[k] -= dt;
-          positions[k * 3] += velocities[k * 3] * dt;
-          positions[k * 3 + 1] += velocities[k * 3 + 1] * dt;
-          positions[k * 3 + 2] += velocities[k * 3 + 2] * dt;
-          velocities[k * 3] *= 0.97;
-          velocities[k * 3 + 1] *= 0.95;
-          velocities[k * 3 + 2] *= 0.97;
-        }
-        mat.opacity = alive ? 0.5 : 0;
-        geo.attributes.position.needsUpdate = true;
-      },
-      reset: () => {
-        life.fill(0);
-      },
-    };
-  }
-
   _spawnDust(p) {
     const origin = p.pivot.position.clone().add(this.shaker.position);
-    const dir = new THREE.Vector3(0, 0, 1);
-    this.dust.spawn(origin, dir, this.poleHeight);
+    for (let i = 0; i < 160; i++) {
+      const s = Math.random() * this.poleHeight;
+      const side = Math.random() < 0.5 ? -1 : 1;
+      this.dust.emit({
+        x: origin.x + (Math.random() - 0.5) * 0.5,
+        y: 0.05 + Math.random() * 0.1,
+        z: origin.z + s,
+        vx: side * (0.6 + Math.random() * 1.6),
+        vy: 0.2 + Math.random() * 0.9,
+        vz: (Math.random() - 0.5) * 0.8,
+        life: 2 + Math.random() * 1.5,
+      });
+    }
+    for (let i = 0; i < 30; i++) {
+      const s = Math.random() * this.poleHeight;
+      this.chips.emit(origin.x + (Math.random() - 0.5) * 0.3, 0.15, origin.z + s,
+        (Math.random() - 0.5) * 2.5, 1 + Math.random() * 2, (Math.random() - 0.5) * 1.5, 1, 6);
+    }
+    this._sparkAtArms(p, 1.2);
   }
 
   status(info) {

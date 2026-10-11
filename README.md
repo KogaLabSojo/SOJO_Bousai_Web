@@ -14,7 +14,7 @@ Unity 版（[KogaLabSojo/preparedness](https://github.com/KogaLabSojo/preparedne
 ## 対応端末
 
 - **Android (Chrome)**: WebXR で床を検出し、タップした方向に配置。歩いて回り込める（6DoF）。
-- **iPhone (Safari) など WebXR 非対応のスマホ**: [8th Wall Engine](https://github.com/8thwall/engine) の SLAM で 6DoF。開始時の端末の高さを 1.5 m とみなしてスケールを決め、正面に自動配置する。
+- **iPhone (Safari) など WebXR 非対応のスマホ**: [8th Wall Engine](https://github.com/8thwall/engine) の SLAM で 6DoF。開始時の端末の高さを 1.5 m とみなしてスケールを決め、床に出るリングをタップして配置する。
 - **8th Wall が使えない環境**: 背面カメラ映像にジャイロで向きを合わせた 3D を重ねる簡易AR（3DoF）。
 - **PC**: カメラ映像（なければ背景色）＋ドラッグで見回し。動作確認用。
 
@@ -29,6 +29,21 @@ MediaPipe の人物セグメンテーション（selfie_segmenter）で、カメ
 ### IBL（環境光・映り込み）
 
 カメラ映像を撮影時の向きで球面に投影してキューブマップに蓄積し、PMREM にかけて `scene.environment` にしています。見回すほど周囲の環境が埋まり、ブロック・電柱などの PBR マテリアルと、水面・路面の GLSL シェーダーの環境光・映り込みに使われます。Android WebXR で `light-estimation` が使えるときは、ARCore の HDR 環境マップと主光源の向きを優先します。
+
+### 配置（床・壁）
+
+Android WebXR では床だけでなく壁も検出し、リングの色で区別します（床：オレンジ、壁：水色）。ブロック塀は壁をタップすると、その壁に沿って建ちます。配置後は HUD の「位置調整」で回転（15°ずつ）と前後移動（25 cm ずつ）ができます。
+
+### ハザードマップ連携
+
+メニューの「この場所の浸水想定を調べる」で現在地を取得し、[ハザードマップポータルサイト](https://disaportal.gsi.go.jp/) の重ねるハザードマップ（洪水・高潮・津波の想定浸水深タイル、ズーム 17）から、その地点の色を凡例と照合して想定浸水深を求めます。洪水シナリオに「📍 この場所」ボタンが追加され、想定の最大値まで水位が上がります（5 m 以上は 5 m で表示）。位置情報は端末内でタイルの座標計算に使うだけで、外部に送信するのは地図タイルの取得のみです。
+
+### 演出
+
+- ブロック塀：揺れの間に目地のモルタルが落ち、倒壊時に根元から粉じん、ブロックの着地点で粉じんと破片
+- 電柱：根元のコンクリート片、倒れ始めと着地時に腕金で火花（点光源の閃光と放電音）、着地後もしばらく電線がショート
+- 路面：ひびが走るたびに砂ぼこりと小石、陥没時は縁が崩れて穴に落ちる破片と立ちのぼる土煙
+- 洪水：「大雨にする」で雨・雨音・水面の波紋・雨粒の跳ね返り。水が足首〜目線の間にあるときは足もとに下流側へ伸びる白波と、歩くと水しぶき
 
 ### 8th Wall Engine のライセンス
 
@@ -83,6 +98,8 @@ src/
   core/SlamController.js   8th Wall Engine の SLAM（WebXR 非対応スマホの 6DoF）
   core/FallbackController.js  カメラ映像 + ジャイロの簡易AR
   core/PeopleOcclusion.js  MediaPipe による人物オクルージョン
+  core/HazardMap.js        ハザードマップの想定浸水深タイルの照会
+  core/Effects.js          粉じん・破片・雨・火花の演出
   core/AudioFX.js          効果音（Web Audio で合成）
   scenarios/*.js           各災害シナリオ
   shaders/*.glsl           水面・路面のシェーダー

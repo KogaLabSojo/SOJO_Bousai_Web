@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { Scenario } from './Scenario.js';
 import { loadTexture } from '../core/assets.js';
+import { Particles, Rain } from '../core/Effects.js';
 import vertexShader from '../shaders/water.vert.glsl?raw';
 import fragmentShader from '../shaders/water.frag.glsl?raw';
 
@@ -63,6 +64,8 @@ export class FloodScenario extends Scenario {
       uSkyColor: { value: new THREE.Color(0.55, 0.62, 0.7) },
       uCenter: { value: new THREE.Vector2() },
       uRadius: { value: RADIUS },
+      uRain: { value: 0 },
+      uWake: { value: 0 },
       ...this.ctx.stage.env.uniforms,
     };
 
@@ -104,18 +107,59 @@ export class FloodScenario extends Scenario {
       this.debris.push(mesh);
     }
 
+    this.rain = new Rain();
+    this.splash = new Particles({
+      count: 400,
+      color: 0xdfe6ee,
+      gravity: 5,
+      drag: 0.5,
+      sizeStart: 0.035,
+      sizeEnd: 0.012,
+      opacity: 0.85,
+    });
+    this.root.add(this.rain.lines, this.splash.points);
+    this.raining = false;
+    this.prevCam = null;
+
     this.level = 0;
     this.target = 0;
     this.selected = null;
   }
 
   get hint() {
-    if (this.target === 0) return '浸水の深さを選ぶと、水位が実寸で上がってきます。';
+    const local = this._localPreset();
+    if (this.selected === 'local' && local) {
+      return `この場所の想定最大（${local.source}）は <b>${local.rankLabel}</b>。${BANDS[this.band ?? 'none'].msg}` +
+        '<br><small>出典：ハザードマップポータルサイト</small>';
+    }
+    if (this.target === 0) {
+      return local
+        ? '「この場所」を選ぶと、ハザードマップの想定浸水深まで水位が上がります。'
+        : '浸水の深さを選ぶと、水位が実寸で上がってきます。';
+    }
     return BANDS[this.band ?? 'none'].msg || '水位が上がっています…';
   }
 
   get actions() {
-    return PRESETS.map((p) => ({ id: p.id, label: p.label, active: this.selected === p.id }));
+    const local = this._localPreset();
+    const presets = local ? [local, ...PRESETS] : PRESETS;
+    return [
+      ...presets.map((p) => ({ id: p.id, label: p.label, active: this.selected === p.id, primary: p.id === 'local' })),
+      { id: 'rain', label: this.raining ? '☔ 雨を止める' : '☔ 大雨にする', active: this.raining },
+    ];
+  }
+
+  /** メニューで調べた現在地のハザードマップ結果をプリセットにする */
+  _localPreset() {
+    const worst = this.ctx.hazard?.worst;
+    if (!worst) return null;
+    return {
+      id: 'local',
+      label: `📍 この場所 ${worst.rank.label}`,
+      depth: worst.rank.depth,
+      source: worst.label,
+      rankLabel: worst.rank.label,
+    };
   }
 
   get slider() {
@@ -135,7 +179,12 @@ export class FloodScenario extends Scenario {
   }
 
   onAction(id) {
-    const preset = PRESETS.find((p) => p.id === id);
+    if (id === 'rain') {
+      this.raining = !this.raining;
+      this.ctx.ui.refresh();
+      return;
+    }
+    const preset = id === 'local' ? this._localPreset() : PRESETS.find((p) => p.id === id);
     if (!preset) return;
     this.selected = id;
     this.target = preset.depth;
@@ -146,8 +195,13 @@ export class FloodScenario extends Scenario {
     this.level = 0;
     this.target = 0;
     this.selected = null;
+    this.raining = false;
+    this.rain.intensity = 0;
+    this.splash.reset();
+    this.prevCam = null;
     this.ctx.ui.setUnderwater(false);
     this.ctx.audio.setLoop('water', 0);
+    this.ctx.audio.setLoop('rain', 0);
   }
 
   update(dt, info) {
@@ -192,6 +246,52 @@ export class FloodScenario extends Scenario {
     this.ctx.ui.setUnderwater(under);
     this.ctx.audio.setLoop('water', this.level > 0.02 ? Math.min(0.35, 0.1 + this.level * 0.2) : 0);
 
+    this._updateRainAndSplash(dt, cam, eye, under);
+  }
+
+  _updateRainAndSplash(dt, cam, eye, under) {
+    const r = this.rain;
+    r.intensity += ((this.raining ? 1 : 0) - r.intensity) * Math.min(1, dt * 1.5);
+    this.uniforms.uRain.value = r.intensity;
+    r.update(dt, cam, this.level > 0.005 ? this.level : 0);
+    this.ctx.audio.setLoop('rain', r.intensity * 0.3, { type: 'highpass', freq: 2500, q: 0.3 });
+
+    // 水が足首より上・目より下のときだけ足もとに白波
+    const wading = this.level > ANKLE * 0.5 && !under;
+    this.uniforms.uWake.value += ((wading ? 1 : 0) - this.uniforms.uWake.value) * Math.min(1, dt * 2);
+
+    const surface = this.level > 0.005 ? this.level : 0;
+    // 雨粒が水面（または地面）に当たって跳ねる
+    const drops = r.intensity * 60 * dt;
+    for (let i = 0; i < drops; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const d = 0.3 + Math.random() * 3;
+      this._splash(cam.x + Math.cos(a) * d, surface, cam.z + Math.sin(a) * d, 2, 0.7);
+    }
+
+    // 水の中を歩くと足もとで水しぶきが上がる
+    if (this.prevCam && wading) {
+      const speed = Math.hypot(cam.x - this.prevCam.x, cam.z - this.prevCam.z) / Math.max(dt, 1e-3);
+      if (speed > 0.25 && Math.random() < dt * 20 * Math.min(1, speed)) {
+        this._splash(cam.x + (Math.random() - 0.5) * 0.4, surface, cam.z + (Math.random() - 0.5) * 0.4, 8, 1.6);
+      }
+    }
+    this.prevCam = (this.prevCam ?? new THREE.Vector3()).copy(cam);
+    this.splash.update(dt);
+  }
+
+  _splash(x, y, z, n, power) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const s = (0.2 + Math.random() * 0.5) * power;
+      this.splash.emit({
+        x, y: y + 0.01, z,
+        vx: Math.cos(a) * s * 0.5,
+        vy: s * 1.4,
+        vz: Math.sin(a) * s * 0.5,
+        life: 0.25 + Math.random() * 0.25 * power,
+      });
+    }
   }
 
   _resolveBand(depth, eye) {
@@ -217,6 +317,7 @@ export class FloodScenario extends Scenario {
   dispose() {
     this.ctx.ui.setUnderwater(false);
     this.ctx.audio.setLoop('water', 0);
+    this.ctx.audio.setLoop('rain', 0);
     super.dispose();
   }
 }

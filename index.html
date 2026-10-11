@@ -51,6 +51,10 @@
             </span>
           </button>
         </div>
+        <div class="hazard">
+          <button id="btn-hazard" class="ghost">📍 この場所の浸水想定を調べる</button>
+          <p id="hazard-result" hidden></p>
+        </div>
         <p class="footnote">周囲の安全を確認し、広い場所で体験してください。</p>
         <p class="credit">
           6DoF tracking: 8th Wall Engine © Niantic Spatial, Inc. —
@@ -72,6 +76,13 @@
             <output></output>
           </label>
           <div id="hud-actions"></div>
+          <div id="hud-adjust" hidden>
+            <span>位置調整</span>
+            <button data-nudge="rot-l" aria-label="左に回転">↺</button>
+            <button data-nudge="rot-r" aria-label="右に回転">↻</button>
+            <button data-nudge="near">近く</button>
+            <button data-nudge="far">遠く</button>
+          </div>
         </div>
       </section>
 

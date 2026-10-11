@@ -10,6 +10,9 @@ export class Scenario {
   /** 基準点を体験者の何 m 先に置くか */
   static placeDistance = 2.5;
   static placeHint = '床にスマホを向けて、リングが出たらタップして配置します。';
+  /** 壁に向けてタップしたとき、その壁に沿わせて置けるか */
+  static placeOnWall = false;
+  static wallOffset = 0;
 
   constructor(ctx) {
     this.ctx = ctx;

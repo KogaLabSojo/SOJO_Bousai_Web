@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon-es';
 import { Scenario } from './Scenario.js';
 import { loadGLTF, loadTexture } from '../core/assets.js';
+import { Particles, Chips } from '../core/Effects.js';
 
 const SHAKE_TIME = 3.2;
 const FOOTING_HEIGHT = 0.12;
@@ -12,6 +13,11 @@ export class BlockWallScenario extends Scenario {
   static id = 'block';
   static title = 'ブロック塀の倒壊';
   static placeDistance = 2.2;
+  static placeOnWall = true;
+  /** 実際の壁面から基礎の中心までの距離（基礎の奥行き 0.32 m の半分＋すき間） */
+  static wallOffset = 0.18;
+  static placeHint =
+    '床か壁にスマホを向けてタップします。壁（水色のリング）を選ぶと、その壁に沿って塀が建ちます。';
 
   async load() {
     const [gltf, concrete] = await Promise.all([
@@ -67,6 +73,18 @@ export class BlockWallScenario extends Scenario {
     this.debris = new THREE.Group();
     this.root.add(this.debris);
 
+    this.dust = new Particles({
+      count: 600,
+      color: 0xc4bcac,
+      sizeStart: 0.25,
+      sizeEnd: 1.3,
+      opacity: 0.5,
+      drag: 1.3,
+      gravity: -0.03,
+    });
+    this.chips = new Chips({ count: 120, color: 0x8f8f8a, size: 0.035 });
+    this.root.add(this.dust.points, this.chips.mesh);
+
     this.totalHeight = this.wallHeight + FOOTING_HEIGHT;
     this.reset();
   }
@@ -105,7 +123,26 @@ export class BlockWallScenario extends Scenario {
       b.mesh.quaternion.copy(b.homeQuat);
       b.body = null;
     }
+    this.dust?.reset();
+    this.chips?.reset();
     this.ctx.quake = 0;
+  }
+
+  _puff(x, z, n, spread = 0.3, scale = 1) {
+    for (let i = 0; i < n; i++) {
+      const a = Math.random() * Math.PI * 2;
+      const s = 0.3 + Math.random() * 0.9;
+      this.dust.emit({
+        x: x + (Math.random() - 0.5) * spread,
+        y: 0.05 + Math.random() * 0.1,
+        z: z + (Math.random() - 0.5) * spread,
+        vx: Math.cos(a) * s,
+        vy: 0.15 + Math.random() * 0.5,
+        vz: Math.sin(a) * s,
+        life: 1.6 + Math.random() * 1.4,
+        scale,
+      });
+    }
   }
 
   update(dt) {
@@ -120,6 +157,12 @@ export class BlockWallScenario extends Scenario {
       // 揺れで塀がぐらつく（徐々に体験者側へ傾き始める）
       const lean = Math.max(0, (t - 1.5) / (SHAKE_TIME - 1.5));
       this.pivot.rotation.x = Math.sin(t * 2 * Math.PI * 2.3) * 0.025 * amp + lean * 0.05;
+      // 目地のモルタルが崩れて上からパラパラ落ちる
+      if (Math.random() < dt * 10 * amp) {
+        const x = (Math.random() - 0.5) * 2.8 + this.shaker.position.x;
+        this.chips.emit(x, this.totalHeight, 0.1, 0, 0, 0.3, 0.5, 3);
+        this.dust.emit({ x, y: this.totalHeight, z: 0.1, vx: 0, vy: -0.4, vz: 0.15, life: 1.2, scale: 0.3 });
+      }
       if (t >= SHAKE_TIME) {
         this.state = 'toppling';
         this.theta = this.pivot.rotation.x;
@@ -146,6 +189,8 @@ export class BlockWallScenario extends Scenario {
         this.ctx.ui.refresh();
       }
     }
+    this.dust.update(dt);
+    this.chips.update(dt);
   }
 
   _releaseBlocks() {
@@ -204,12 +249,24 @@ export class BlockWallScenario extends Scenario {
         if (v > 1.5 && now - lastImpact > 45) {
           lastImpact = now;
           this.ctx.audio.impact(Math.min(1, v / 5), 1.4);
+          const p = body.position;
+          if (p.y < 0.4) this._puff(p.x, p.z, Math.min(14, Math.round(v * 3)), 0.25, 0.7);
+          for (let i = 0; i < Math.min(5, v); i++) {
+            this.chips.emit(p.x, Math.max(0.05, p.y), p.z,
+              (Math.random() - 0.5) * v * 0.6, Math.random() * v * 0.5, (Math.random() - 0.3) * v * 0.6, 0.8, 5);
+          }
         }
       });
       world.addBody(body);
       b.body = body;
     }
     this.world = world;
+    // 根元が折れる瞬間に基礎まわりから粉じんが噴き出す
+    for (let x = -1.4; x <= 1.4; x += 0.2) this._puff(x, pivotPos.z, 4, 0.2, 0.8);
+    for (let i = 0; i < 25; i++) {
+      this.chips.emit((Math.random() - 0.5) * 2.8, FOOTING_HEIGHT + 0.05, pivotPos.z,
+        (Math.random() - 0.5) * 1.2, 0.5 + Math.random() * 1.5, 0.5 + Math.random() * 1.5, 1, 6);
+    }
     this.ctx.quake = 0.6;
     navigator.vibrate?.(300);
   }

@@ -106,6 +106,37 @@ export class AudioFX {
     src.stop(t + 0.3);
   }
 
+  /** 電線の火花（バチッ・ジジッ） */
+  zap(strength = 1) {
+    if (!this.ctx) return;
+    const t = this.ctx.currentTime;
+    const dur = 0.15 + Math.random() * 0.25;
+    const osc = this.ctx.createOscillator();
+    osc.type = 'sawtooth';
+    osc.frequency.setValueAtTime(110 + Math.random() * 60, t);
+    const og = this.ctx.createGain();
+    // 断続的に鳴らしてアーク放電らしくする
+    for (let s = 0; s < dur; s += 0.025) {
+      og.gain.setValueAtTime(Math.random() < 0.6 ? 0.35 * strength : 0.0001, t + s);
+    }
+    og.gain.setValueAtTime(0.0001, t + dur);
+    osc.connect(og).connect(this.master);
+    osc.start(t);
+    osc.stop(t + dur + 0.05);
+
+    const src = this._noiseSource(false);
+    src.playbackRate.value = 6;
+    const hp = this.ctx.createBiquadFilter();
+    hp.type = 'highpass';
+    hp.frequency.value = 2500;
+    const g = this.ctx.createGain();
+    g.gain.setValueAtTime(0.9 * strength, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    src.connect(hp).connect(g).connect(this.master);
+    src.start(t, Math.random() * 3);
+    src.stop(t + dur + 0.05);
+  }
+
   /** 継続音（水の流れなど）。volume 0 で止まる */
   setLoop(name, volume, { type = 'bandpass', freq = 700, q = 0.6 } = {}) {
     if (!this.ctx) return;

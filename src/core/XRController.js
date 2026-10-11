@@ -1,6 +1,11 @@
 import * as THREE from 'three';
 
-/** Android Chrome などの WebXR (immersive-ar + hit-test) 用。床を検出して 6DoF で体験できる。 */
+const UP = new THREE.Vector3(0, 1, 0);
+
+/**
+ * Android Chrome などの WebXR (immersive-ar + hit-test) 用。床・壁を検出して 6DoF で体験できる。
+ * ヒットテストの姿勢の Y 軸は面の法線なので、その向きで床か壁かを判定する。
+ */
 export class XRController {
   static async isSupported() {
     if (!navigator.xr) return false;
@@ -19,19 +24,17 @@ export class XRController {
     this.hasHit = false;
     this.searching = true;
     this.hitPosition = new THREE.Vector3();
+    this.hitNormal = new THREE.Vector3(0, 1, 0);
+    /** 'floor' | 'wall' | 'other' */
+    this.hitKind = 'floor';
+    /** これまでに見つかった床の高さ（見つかるまでは null） */
+    this.floorY = null;
     this.onSelect = null;
     this.onSelectStart = null;
     this.onSelectEnd = null;
     this.onEnd = null;
-
-    const ring = new THREE.RingGeometry(0.12, 0.16, 40).rotateX(-Math.PI / 2);
-    this.reticle = new THREE.Mesh(
-      ring,
-      new THREE.MeshBasicMaterial({ color: 0xffb020, transparent: true, opacity: 0.9 }),
-    );
-    this.reticle.matrixAutoUpdate = false;
-    this.reticle.visible = false;
-    stage.scene.add(this.reticle);
+    this._matrix = new THREE.Matrix4();
+    this._camPos = new THREE.Vector3();
   }
 
   /** ユーザー操作のハンドラ内で最初に呼ぶこと（requestSession は user gesture が必要） */
@@ -45,9 +48,13 @@ export class XRController {
     renderer.xr.setReferenceSpaceType('local');
     await renderer.xr.setSession(session);
     this.session = session;
+    this.floorY = null;
 
     const viewerSpace = await session.requestReferenceSpace('viewer');
-    this.hitTestSource = await session.requestHitTestSource({ space: viewerSpace });
+    this.hitTestSource = await session.requestHitTestSource({
+      space: viewerSpace,
+      entityTypes: ['plane', 'point'],
+    });
 
     session.addEventListener('select', () => this.onSelect?.());
     session.addEventListener('selectstart', () => this.onSelectStart?.());
@@ -55,7 +62,7 @@ export class XRController {
     session.addEventListener('end', () => {
       this.hitTestSource = null;
       this.session = null;
-      this.reticle.visible = false;
+      this.stage.reticle.visible = false;
       this.onEnd?.();
     });
   }
@@ -64,15 +71,35 @@ export class XRController {
     if (!frame || !this.hitTestSource) return;
     const refSpace = this.stage.renderer.xr.getReferenceSpace();
     const hits = frame.getHitTestResults(this.hitTestSource);
+    this.hasHit = false;
     if (hits.length > 0) {
       const pose = hits[0].getPose(refSpace);
-      this.reticle.matrix.fromArray(pose.transform.matrix);
-      this.hitPosition.setFromMatrixPosition(this.reticle.matrix);
-      this.hasHit = true;
-    } else {
-      this.hasHit = false;
+      if (pose) {
+        this._matrix.fromArray(pose.transform.matrix);
+        this.hitPosition.setFromMatrixPosition(this._matrix);
+        this.hitNormal.setFromMatrixColumn(this._matrix, 1).normalize();
+        const up = this.hitNormal.dot(UP);
+        this.hitKind = up > 0.8 ? 'floor' : Math.abs(up) < 0.35 ? 'wall' : 'other';
+        if (this.hitKind === 'floor') this._trackFloor(this.hitPosition.y);
+        this.stage.setReticle(this._matrix, this.hitKind === 'wall');
+        this.hasHit = true;
+      }
     }
-    this.reticle.visible = this.searching && this.hasHit;
+    this.stage.reticle.visible = this.searching && this.hasHit;
+  }
+
+  /** 目の高さより十分低い水平面のうち、最も低いものを床とみなす */
+  _trackFloor(y) {
+    this.stage.camera.getWorldPosition(this._camPos);
+    if (y > this._camPos.y - 0.6) return;
+    this.floorY = this.floorY === null ? y : Math.min(this.floorY, y);
+  }
+
+  /** 床の高さ（未検出ならカメラの 1.5 m 下と仮定） */
+  get floorHeight() {
+    if (this.floorY !== null) return this.floorY;
+    this.stage.camera.getWorldPosition(this._camPos);
+    return this._camPos.y - 1.5;
   }
 
   async stop() {
