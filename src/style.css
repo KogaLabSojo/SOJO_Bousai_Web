@@ -457,3 +457,133 @@ button.primary {
 #toast.show {
   opacity: 1;
 }
+
+/* ---------- 防災倉庫スキャン (MindAR) ---------- */
+#warehouse-scan {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: #000;
+}
+
+#warehouse-scan video,
+#warehouse-scan canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+}
+
+body.warehouse-on #scene,
+body.warehouse-on #camera-feed,
+body.warehouse-on #slam-feed {
+  visibility: hidden;
+}
+
+#warehouse-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+#warehouse-hud > * {
+  pointer-events: auto;
+}
+
+.warehouse-hint {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: calc(env(safe-area-inset-top) + 62px);
+  margin: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.warehouse-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: min(72vh, 640px);
+  display: flex;
+  flex-direction: column;
+  background: rgba(12, 18, 32, 0.94);
+  border-top: 1px solid var(--line);
+  border-radius: 18px 18px 0 0;
+  transform: translateY(110%);
+  transition: transform 0.28s ease;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.warehouse-panel.open {
+  transform: translateY(0);
+}
+
+.warehouse-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+.warehouse-panel-head strong {
+  display: block;
+  font-size: 17px;
+}
+
+.warehouse-panel-head small {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+#btn-warehouse-close {
+  font-size: 22px;
+  line-height: 1;
+  padding: 4px 10px;
+}
+
+.warehouse-panel-body {
+  overflow: auto;
+  padding: 12px 16px 20px;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.warehouse-panel-body h3 {
+  margin: 14px 0 6px;
+  font-size: 15px;
+  color: var(--accent);
+}
+
+.warehouse-panel-body h3:first-child {
+  margin-top: 0;
+}
+
+.warehouse-panel-body p {
+  margin: 0 0 8px;
+  color: var(--text);
+}
+
+.warehouse-panel-body .wh-label {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.warehouse-panel-body hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 14px 0;
+}

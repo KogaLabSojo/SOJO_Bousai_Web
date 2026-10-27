@@ -10,6 +10,7 @@ Unity 版（[KogaLabSojo/preparedness](https://github.com/KogaLabSojo/preparedne
 | 洪水・浸水 | 足首〜頭上まで水位が実寸で上がる。泥水シェーダーを GLSL で移植 | `water.unity` / `FloodExperienceController` / `WaterSurfaceShader` |
 | 路面の陥没・崩壊 | 長押しでひびが広がり、路面が陥没する（GLSL で変形） | `road.unity` / `CrackDamageController` |
 | 電柱の倒壊 | 電柱が電線に引かれて連鎖的に倒れる | `dentyu broken.unity` / `Pole2.fbx` / `PoleFallController` |
+| 防災倉庫スキャン | 「防」マークを MindAR で認識し、説明と収納品一覧を表示 | `ARscan/Warehouse.unity` / `Warehouse.prefab` |
 
 ## 対応端末
 
@@ -37,6 +38,10 @@ Android WebXR では床だけでなく壁も検出し、リングの色で区別
 ### ハザードマップ連携
 
 メニューの「この場所の浸水想定を調べる」で現在地を取得し、[ハザードマップポータルサイト](https://disaportal.gsi.go.jp/) の重ねるハザードマップ（洪水・高潮・津波の想定浸水深タイル、ズーム 17）から、その地点の色を凡例と照合して想定浸水深を求めます。洪水シナリオに「📍 この場所」ボタンが追加され、想定の最大値まで水位が上がります（5 m 以上は 5 m で表示）。位置情報は端末内でタイルの座標計算に使うだけで、外部に送信するのは地図タイルの取得のみです。
+
+### 防災倉庫スキャン（MindAR）
+
+メニューの「防災倉庫をスキャン」で、画像トラッキング（[MindAR.js](https://github.com/hiukim/mind-ar-js)）を開始します。マーカーは `public/targets/warehouse.mind`（Unity 版の「防」マーク相当）。認識すると説明パネルと音声（`public/audio/warehouse.mp3`）が出ます。床に置く災害体験とは別系統で、カメラ権限と HTTPS が必要です。
 
 ### 演出
 
@@ -100,7 +105,12 @@ src/
   core/PeopleOcclusion.js  MediaPipe による人物オクルージョン
   core/HazardMap.js        ハザードマップの想定浸水深タイルの照会
   core/Effects.js          粉じん・破片・雨・火花の演出
+  core/WarehouseScan.js    MindAR による防災倉庫スキャン
   core/AudioFX.js          効果音（Web Audio で合成）
+  content/warehouse.js     倉庫の説明・収納品一覧
   scenarios/*.js           各災害シナリオ
   shaders/*.glsl           水面・路面のシェーダー
+public/
+  targets/warehouse.mind   MindAR マーカー
+  audio/warehouse.mp3      倉庫の解説音声
 ```

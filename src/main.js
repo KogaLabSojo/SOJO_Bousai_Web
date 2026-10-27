@@ -11,7 +11,6 @@ import { BlockWallScenario } from './scenarios/BlockWallScenario.js';
 import { FloodScenario } from './scenarios/FloodScenario.js';
 import { RoadCollapseScenario } from './scenarios/RoadCollapseScenario.js';
 import { PoleFallScenario } from './scenarios/PoleFallScenario.js';
-
 const SCENARIOS = {
   block: BlockWallScenario,
   flood: FloodScenario,
@@ -33,6 +32,11 @@ const el = {
   loading: $('#loading'),
   toast: $('#toast'),
   underwater: $('#underwater'),
+  warehouseHud: $('#warehouse-hud'),
+  warehouseScan: $('#warehouse-scan'),
+  warehousePanel: $('#warehouse-panel'),
+  warehouseHint: $('#warehouse-hint'),
+  warehouseAudio: $('#warehouse-audio'),
 };
 
 const stage = new Stage($('#scene'));
@@ -47,12 +51,13 @@ const forcedMode = new URLSearchParams(location.search).get('ar');
 
 let xrSupported = false;
 let slamCandidate = false;
-let mode = null; // 'xr' | 'slam' | 'fallback'
+let mode = null; // 'xr' | 'slam' | 'fallback' | 'warehouse'
 let scenario = null;
 let placed = false;
 let busy = false;
 let exiting = false;
 let pendingPlaceSince = 0;
+let warehouseScan = null;
 
 const ctx = {
   stage,
@@ -99,6 +104,57 @@ document.querySelectorAll('[data-scenario]').forEach((btn) => {
 });
 $('#btn-back').addEventListener('click', () => exitScenario());
 $('#btn-hazard').addEventListener('click', () => checkHazard());
+$('#btn-warehouse').addEventListener('click', () => startWarehouse());
+$('#btn-warehouse-back').addEventListener('click', () => exitWarehouse());
+$('#btn-warehouse-close').addEventListener('click', () => warehouseScan?.closePanel());
+
+async function startWarehouse() {
+  if (busy) return;
+  busy = true;
+  audio.unlock();
+  el.menu.hidden = true;
+  el.hud.hidden = true;
+  el.warehouseHud.hidden = false;
+  document.body.classList.add('warehouse-on');
+  mode = 'warehouse';
+  ctx.mode = mode;
+  setLoading(true);
+  try {
+    const { WarehouseScan, WAREHOUSE } = await import('./core/WarehouseScan.js');
+    $('#warehouse-panel-title').textContent = WAREHOUSE.title;
+    $('#warehouse-panel-place').textContent = WAREHOUSE.place;
+    $('#warehouse-panel-body').innerHTML =
+      WAREHOUSE.introHtml +
+      '<hr>' +
+      `<h3>収納品一覧（${WAREHOUSE.place}）</h3>` +
+      WAREHOUSE.inventoryHtml;
+    warehouseScan ??= new WarehouseScan({
+      container: el.warehouseScan,
+      panel: el.warehousePanel,
+      hint: el.warehouseHint,
+      audioEl: el.warehouseAudio,
+    });
+    await warehouseScan.start();
+  } catch (err) {
+    console.error(err);
+    toast('カメラを開始できませんでした。\nHTTPS とカメラ権限を確認してください。');
+    await exitWarehouse();
+    busy = false;
+    return;
+  } finally {
+    setLoading(false);
+  }
+  busy = false;
+}
+
+async function exitWarehouse() {
+  warehouseScan?.stop();
+  document.body.classList.remove('warehouse-on');
+  el.warehouseHud.hidden = true;
+  el.menu.hidden = false;
+  mode = null;
+  ctx.mode = null;
+}
 
 // 配置の微調整（実際の壁や道路の向きに合わせる）
 const NUDGE = { 'rot-l': [Math.PI / 24, 0], 'rot-r': [-Math.PI / 24, 0], near: [0, -0.25], far: [0, 0.25] };
@@ -452,7 +508,7 @@ stage.renderer.setAnimationLoop((_time, frame) => {
   const now = performance.now();
   const dt = Math.min(0.05, (now - last) / 1000);
   last = now;
-  if (!mode) return;
+  if (!mode || mode === 'warehouse') return;
 
   if (mode === 'xr') {
     xr.update(frame);

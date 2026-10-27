@@ -50,6 +50,13 @@
               <small>電柱が連鎖的に倒れる危険範囲を確認</small>
             </span>
           </button>
+          <button class="card" id="btn-warehouse">
+            <span class="card-icon">🏚️</span>
+            <span class="card-body">
+              <strong>防災倉庫をスキャン</strong>
+              <small>「防」マークをカメラで読み取り、収納品を確認</small>
+            </span>
+          </button>
         </div>
         <div class="hazard">
           <button id="btn-hazard" class="ghost">📍 この場所の浸水想定を調べる</button>
@@ -59,6 +66,8 @@
         <p class="credit">
           6DoF tracking: 8th Wall Engine © Niantic Spatial, Inc. —
           <a href="https://github.com/8thwall/engine/blob/main/LICENSE" target="_blank" rel="noopener">license &amp; disclaimer of warranties</a>
+          <br />
+          画像トラッキング: <a href="https://github.com/hiukim/mind-ar-js" target="_blank" rel="noopener">MindAR.js</a>
         </p>
       </section>
 
@@ -86,9 +95,30 @@
         </div>
       </section>
 
+      <section id="warehouse-hud" hidden>
+        <header class="hud-top">
+          <button id="btn-warehouse-back" class="ghost">← メニュー</button>
+          <h2>防災倉庫</h2>
+        </header>
+        <p id="warehouse-hint" class="warehouse-hint">防災倉庫の「防」マークにカメラを向けてください</p>
+        <aside id="warehouse-panel" class="warehouse-panel" hidden>
+          <header class="warehouse-panel-head">
+            <div>
+              <strong id="warehouse-panel-title">防災倉庫</strong>
+              <small id="warehouse-panel-place"></small>
+            </div>
+            <button id="btn-warehouse-close" class="ghost" aria-label="閉じる">×</button>
+          </header>
+          <div id="warehouse-panel-body" class="warehouse-panel-body"></div>
+        </aside>
+      </section>
+
       <div id="loading" hidden><div class="spinner"></div><p>読み込み中…</p></div>
       <div id="toast"></div>
     </div>
+
+    <div id="warehouse-scan" hidden></div>
+    <audio id="warehouse-audio" src="./audio/warehouse.mp3" preload="none" playsinline></audio>
 
     <script type="module" src="/src/main.js"></script>
   </body>
