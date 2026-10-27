@@ -41,7 +41,7 @@ Android WebXR では床だけでなく壁も検出し、リングの色で区別
 
 ### 防災倉庫スキャン（MindAR）
 
-メニューの「防災倉庫をスキャン」で、画像トラッキング（[MindAR.js](https://github.com/hiukim/mind-ar-js)）を開始します。マーカーは `public/targets/warehouse.mind`（Unity 版の「防」マーク相当）。認識すると説明パネルと音声（`public/audio/warehouse.mp3`）が出ます。床に置く災害体験とは別系統で、カメラ権限と HTTPS が必要です。
+メニューの「防災倉庫をスキャン」で、画像トラッキング（[MindAR.js](https://github.com/hiukim/mind-ar-js)）を開始します。マーカーは `public/targets/warehouse.mind`（Unity 版の「防」マーク相当）。認識すると説明パネルが出ます。床に置く災害体験とは別系統で、カメラ権限と HTTPS が必要です。
 
 ### 演出
 
@@ -112,5 +112,4 @@ src/
   shaders/*.glsl           水面・路面のシェーダー
 public/
   targets/warehouse.mind   MindAR マーカー
-  audio/warehouse.mp3      倉庫の解説音声
 ```

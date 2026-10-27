@@ -7,21 +7,19 @@ import { WAREHOUSE } from '../content/warehouse.js';
  * 既存の WebXR / 8th Wall シーンとは独立して動かす。
  */
 export class WarehouseScan {
-  constructor({ container, panel, hint, audioEl }) {
+  constructor({ container, panel, hint }) {
     this.container = container;
     this.panel = panel;
     this.hint = hint;
-    this.audioEl = audioEl;
     this.mindar = null;
     this.running = false;
     this.found = false;
-    this._audioPlayed = false;
+    this._anchor = null;
   }
 
   async start() {
     if (this.running) return;
     this.found = false;
-    this._audioPlayed = false;
     this.panel.hidden = true;
     this.panel.classList.remove('open');
     this.hint.hidden = false;
@@ -38,6 +36,7 @@ export class WarehouseScan {
 
     const { renderer, scene, camera } = this.mindar;
     const anchor = this.mindar.addAnchor(0);
+    this._anchor = anchor;
 
     // 認識中の目印（半透明の枠）
     const frame = new THREE.Mesh(
@@ -59,30 +58,39 @@ export class WarehouseScan {
     ring.position.z = 0.02;
     anchor.group.add(ring);
 
-    anchor.onTargetFound = () => {
+    const onFound = () => {
+      if (this.found) return;
       this.found = true;
       this.hint.hidden = true;
       this.openPanel();
-      this._playAudio();
     };
-    anchor.onTargetLost = () => {
+    const onLost = () => {
       this.found = false;
-      // 読みやすさのためパネルは残し、ヒントだけ戻す
       if (!this.panel.classList.contains('open')) this.hint.hidden = false;
     };
+    anchor.onTargetFound = onFound;
+    anchor.onTargetLost = onLost;
 
     this.container.hidden = false;
     await this.mindar.start();
     this.running = true;
     renderer.setAnimationLoop(() => {
+      // コールバックが取れない環境向けの保険
+      if (anchor.visible) onFound();
+      else if (this.found && !this.panel.classList.contains('open')) onLost();
       renderer.render(scene, camera);
     });
   }
 
   openPanel() {
     this.panel.hidden = false;
+    this.panel.removeAttribute('hidden');
     // 次フレームで transition を効かせる
-    requestAnimationFrame(() => this.panel.classList.add('open'));
+    requestAnimationFrame(() => {
+      this.panel.classList.add('open');
+      // さらに1フレーム待って確実に表示
+      requestAnimationFrame(() => this.panel.classList.add('open'));
+    });
   }
 
   closePanel() {
@@ -94,18 +102,7 @@ export class WarehouseScan {
       : '防災倉庫の「防」マークにカメラを向けてください';
   }
 
-  _playAudio() {
-    if (this._audioPlayed || !this.audioEl) return;
-    this._audioPlayed = true;
-    this.audioEl.currentTime = 0;
-    this.audioEl.play().catch(() => {});
-  }
-
   stop() {
-    if (this.audioEl) {
-      this.audioEl.pause();
-      this.audioEl.currentTime = 0;
-    }
     if (this.mindar) {
       try {
         this.mindar.renderer?.setAnimationLoop(null);
@@ -117,6 +114,7 @@ export class WarehouseScan {
       this.container.replaceChildren();
       this.mindar = null;
     }
+    this._anchor = null;
     this.running = false;
     this.found = false;
     this.container.hidden = true;

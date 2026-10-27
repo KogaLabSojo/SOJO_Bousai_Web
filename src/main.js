@@ -36,7 +36,6 @@ const el = {
   warehouseScan: $('#warehouse-scan'),
   warehousePanel: $('#warehouse-panel'),
   warehouseHint: $('#warehouse-hint'),
-  warehouseAudio: $('#warehouse-audio'),
 };
 
 const stage = new Stage($('#scene'));
@@ -132,7 +131,6 @@ async function startWarehouse() {
       container: el.warehouseScan,
       panel: el.warehousePanel,
       hint: el.warehouseHint,
-      audioEl: el.warehouseAudio,
     });
     await warehouseScan.start();
   } catch (err) {
