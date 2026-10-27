@@ -57,6 +57,7 @@ let busy = false;
 let exiting = false;
 let pendingPlaceSince = 0;
 let warehouseScan = null;
+let warehouseGuide = null;
 
 const ctx = {
   stage,
@@ -119,14 +120,18 @@ async function startWarehouse() {
   ctx.mode = mode;
   setLoading(true);
   try {
-    const { WarehouseScan, WAREHOUSE } = await import('./core/WarehouseScan.js');
+    const [{ WarehouseScan, WAREHOUSE }, { WarehouseGuide }] = await Promise.all([
+      import('./core/WarehouseScan.js'),
+      import('./core/WarehouseGuide.js'),
+    ]);
     $('#warehouse-panel-title').textContent = WAREHOUSE.title;
     $('#warehouse-panel-place').textContent = WAREHOUSE.place;
-    $('#warehouse-panel-body').innerHTML =
-      WAREHOUSE.introHtml +
-      '<hr>' +
-      `<h3>収納品一覧（${WAREHOUSE.place}）</h3>` +
-      WAREHOUSE.inventoryHtml;
+    const body = $('#warehouse-panel-body');
+    if (!warehouseGuide) warehouseGuide = new WarehouseGuide(body);
+    else {
+      warehouseGuide.root = body;
+      warehouseGuide.reset();
+    }
     warehouseScan ??= new WarehouseScan({
       container: el.warehouseScan,
       panel: el.warehousePanel,
