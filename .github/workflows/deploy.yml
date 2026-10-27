@@ -25,7 +25,8 @@ jobs:
           node-version: 22
           cache: npm
 
-      - run: npm ci
+      # mind-ar が依存する node-canvas はブラウザでは不要なので、native build をスキップする
+      - run: npm ci --ignore-scripts
       - run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
