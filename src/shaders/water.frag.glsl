@@ -114,7 +114,7 @@ void main() {
   float foam = smoothstep(0.5, 0.15, bdist) * smoothstep(0.25, 0.6, foamNoise + 0.25 * sin(bdist * 30.0 - uTime * 7.0)) * uWake;
   col = mix(col, ambient * 1.1 + uLightColor * diff * 0.6, foam * 0.8);
 
-  float alpha = clamp(uFade + fresnel * 0.35 + spec * 0.15 + foam * 0.4, 0.0, 0.96);
+  float alpha = clamp(uFade + fresnel * 0.18 + spec * 0.08 + foam * 0.25, 0.0, 0.98);
   // 水面の端は遠方でなじませる
   alpha *= 1.0 - smoothstep(uRadius * 0.55, uRadius, length(vWorldPos.xz - uCenter));
 
