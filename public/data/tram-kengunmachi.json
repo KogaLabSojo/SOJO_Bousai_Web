@@ -1,0 +1,3831 @@
+{
+  "stopName": "健軍町",
+  "stopIds": [
+    "1_1",
+    "1_2"
+  ],
+  "source": "熊本市交通局 GTFS（CC BY 2.1 JP）",
+  "sourceUrl": "https://api.gtfs-data.jp/v2/organizations/kumamoto-shiden/feeds/kumamotoshiden/files/feed.zip",
+  "generatedAt": "2026-11-07T00:43:28.708Z",
+  "services": {
+    "平日": {
+      "mon": true,
+      "tue": true,
+      "wed": true,
+      "thu": true,
+      "fri": true,
+      "sat": false,
+      "sun": false,
+      "start": "20250601",
+      "end": "20270331"
+    },
+    "土曜": {
+      "mon": false,
+      "tue": false,
+      "wed": false,
+      "thu": false,
+      "fri": false,
+      "sat": true,
+      "sun": false,
+      "start": "20250601",
+      "end": "20270331"
+    },
+    "日祝": {
+      "mon": false,
+      "tue": false,
+      "wed": false,
+      "thu": false,
+      "fri": false,
+      "sat": false,
+      "sun": true,
+      "start": "20250601",
+      "end": "20270331"
+    }
+  },
+  "exceptions": {
+    "平日": {
+      "20250721": 2,
+      "20250811": 2,
+      "20250915": 2,
+      "20250923": 2,
+      "20251013": 2,
+      "20251103": 2,
+      "20251123": 2,
+      "20251124": 2,
+      "20251229": 2,
+      "20251230": 2,
+      "20260103": 2,
+      "20260112": 2,
+      "20260211": 2,
+      "20260223": 2,
+      "20260320": 2,
+      "20260429": 2,
+      "20260503": 2,
+      "20260504": 2,
+      "20260505": 2,
+      "20260506": 2,
+      "20260720": 2,
+      "20260811": 2,
+      "20260921": 2,
+      "20260922": 2,
+      "20260923": 2,
+      "20261012": 2,
+      "20261103": 2,
+      "20261123": 2,
+      "20261229": 2,
+      "20261230": 2,
+      "20270103": 2,
+      "20270111": 2,
+      "20270211": 2,
+      "20270223": 2,
+      "20270321": 2,
+      "20270322": 2
+    },
+    "土曜": {
+      "20250721": 2,
+      "20250811": 2,
+      "20250915": 2,
+      "20250923": 2,
+      "20251013": 2,
+      "20251103": 2,
+      "20251123": 2,
+      "20251124": 2,
+      "20251229": 2,
+      "20251230": 2,
+      "20260103": 2,
+      "20260112": 2,
+      "20260211": 2,
+      "20260223": 2,
+      "20260320": 2,
+      "20260429": 2,
+      "20260503": 2,
+      "20260504": 2,
+      "20260505": 2,
+      "20260506": 2,
+      "20260720": 2,
+      "20260811": 2,
+      "20260921": 2,
+      "20260922": 2,
+      "20260923": 2,
+      "20261012": 2,
+      "20261103": 2,
+      "20261123": 2,
+      "20261229": 2,
+      "20261230": 2,
+      "20270103": 2,
+      "20270111": 2,
+      "20270211": 2,
+      "20270223": 2,
+      "20270321": 2,
+      "20270322": 2
+    },
+    "日祝": {
+      "20250721": 1,
+      "20250811": 1,
+      "20250915": 1,
+      "20250923": 1,
+      "20251013": 1,
+      "20251103": 1,
+      "20251123": 1,
+      "20251124": 1,
+      "20251229": 1,
+      "20251230": 1,
+      "20260103": 1,
+      "20260112": 1,
+      "20260211": 1,
+      "20260223": 1,
+      "20260320": 1,
+      "20260429": 1,
+      "20260503": 1,
+      "20260504": 1,
+      "20260505": 1,
+      "20260506": 1,
+      "20260720": 1,
+      "20260811": 1,
+      "20260921": 1,
+      "20260922": 1,
+      "20260923": 1,
+      "20261012": 1,
+      "20261103": 1,
+      "20261123": 1,
+      "20261229": 1,
+      "20261230": 1,
+      "20270103": 1,
+      "20270111": 1,
+      "20270211": 1,
+      "20270223": 1,
+      "20270321": 1,
+      "20270322": 1
+    }
+  },
+  "departures": [
+    {
+      "time": "6:20:",
+      "minutes": 380,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:20:",
+      "minutes": 380,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:20:",
+      "minutes": 380,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:28:",
+      "minutes": 388,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:30:",
+      "minutes": 390,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:30:",
+      "minutes": 390,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:36:",
+      "minutes": 396,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "6:40:",
+      "minutes": 400,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "6:40:",
+      "minutes": 400,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "6:44:",
+      "minutes": 404,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:50:",
+      "minutes": 410,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:50:",
+      "minutes": 410,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "6:52:",
+      "minutes": 412,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:00:",
+      "minutes": 420,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:00:",
+      "minutes": 420,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:00:",
+      "minutes": 420,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:05:",
+      "minutes": 425,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:10:",
+      "minutes": 430,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:10:",
+      "minutes": 430,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:10:",
+      "minutes": 430,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:14:",
+      "minutes": 434,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:18:",
+      "minutes": 438,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:20:",
+      "minutes": 440,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:20:",
+      "minutes": 440,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:22:",
+      "minutes": 442,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:26:",
+      "minutes": 446,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:30:",
+      "minutes": 450,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:30:",
+      "minutes": 450,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:30:",
+      "minutes": 450,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:34:",
+      "minutes": 454,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:38:",
+      "minutes": 458,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:40:",
+      "minutes": 460,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:40:",
+      "minutes": 460,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:42:",
+      "minutes": 462,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:46:",
+      "minutes": 466,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:50:",
+      "minutes": 470,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "7:50:",
+      "minutes": 470,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:50:",
+      "minutes": 470,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:54:",
+      "minutes": 474,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "7:58:",
+      "minutes": 478,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:00:",
+      "minutes": 480,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:00:",
+      "minutes": 480,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:02:",
+      "minutes": 482,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:05:",
+      "minutes": 485,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:05:",
+      "minutes": 485,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:06:",
+      "minutes": 486,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:10:",
+      "minutes": 490,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:10:",
+      "minutes": 490,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:10:",
+      "minutes": 490,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:15:",
+      "minutes": 495,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:15:",
+      "minutes": 495,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:15:",
+      "minutes": 495,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:20:",
+      "minutes": 500,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:20:",
+      "minutes": 500,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:20:",
+      "minutes": 500,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:25:",
+      "minutes": 505,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:25:",
+      "minutes": 505,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:25:",
+      "minutes": 505,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:30:",
+      "minutes": 510,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:30:",
+      "minutes": 510,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:30:",
+      "minutes": 510,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:35:",
+      "minutes": 515,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:35:",
+      "minutes": 515,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:35:",
+      "minutes": 515,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:40:",
+      "minutes": 520,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:40:",
+      "minutes": 520,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:40:",
+      "minutes": 520,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:45:",
+      "minutes": 525,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:45:",
+      "minutes": 525,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:45:",
+      "minutes": 525,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:50:",
+      "minutes": 530,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:50:",
+      "minutes": 530,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:50:",
+      "minutes": 530,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "8:55:",
+      "minutes": 535,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:55:",
+      "minutes": 535,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "8:55:",
+      "minutes": 535,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:00:",
+      "minutes": 540,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:00:",
+      "minutes": 540,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:00:",
+      "minutes": 540,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:05:",
+      "minutes": 545,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:05:",
+      "minutes": 545,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:05:",
+      "minutes": 545,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:10:",
+      "minutes": 550,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:10:",
+      "minutes": 550,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:10:",
+      "minutes": 550,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:15:",
+      "minutes": 555,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:15:",
+      "minutes": 555,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:15:",
+      "minutes": 555,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:20:",
+      "minutes": 560,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:20:",
+      "minutes": 560,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:20:",
+      "minutes": 560,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:25:",
+      "minutes": 565,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:25:",
+      "minutes": 565,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:25:",
+      "minutes": 565,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:30:",
+      "minutes": 570,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:30:",
+      "minutes": 570,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:30:",
+      "minutes": 570,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:35:",
+      "minutes": 575,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:35:",
+      "minutes": 575,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:35:",
+      "minutes": 575,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:40:",
+      "minutes": 580,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:40:",
+      "minutes": 580,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:40:",
+      "minutes": 580,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:45:",
+      "minutes": 585,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:45:",
+      "minutes": 585,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:45:",
+      "minutes": 585,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:50:",
+      "minutes": 590,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:50:",
+      "minutes": 590,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:50:",
+      "minutes": 590,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "9:55:",
+      "minutes": 595,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:55:",
+      "minutes": 595,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "9:55:",
+      "minutes": 595,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:00",
+      "minutes": 600,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:00",
+      "minutes": 600,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:00",
+      "minutes": 600,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:05",
+      "minutes": 605,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:05",
+      "minutes": 605,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:05",
+      "minutes": 605,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:10",
+      "minutes": 610,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:10",
+      "minutes": 610,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:12",
+      "minutes": 612,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:15",
+      "minutes": 615,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:15",
+      "minutes": 615,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:19",
+      "minutes": 619,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:20",
+      "minutes": 620,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:20",
+      "minutes": 620,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:25",
+      "minutes": 625,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:25",
+      "minutes": 625,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:25",
+      "minutes": 625,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:30",
+      "minutes": 630,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:30",
+      "minutes": 630,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:32",
+      "minutes": 632,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:35",
+      "minutes": 635,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:35",
+      "minutes": 635,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:39",
+      "minutes": 639,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:40",
+      "minutes": 640,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:40",
+      "minutes": 640,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:45",
+      "minutes": 645,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:45",
+      "minutes": 645,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:45",
+      "minutes": 645,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:50",
+      "minutes": 650,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:50",
+      "minutes": 650,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "10:52",
+      "minutes": 652,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:55",
+      "minutes": 655,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:55",
+      "minutes": 655,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "10:59",
+      "minutes": 659,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:00",
+      "minutes": 660,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:00",
+      "minutes": 660,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:05",
+      "minutes": 665,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:05",
+      "minutes": 665,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:05",
+      "minutes": 665,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:10",
+      "minutes": 670,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:10",
+      "minutes": 670,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:12",
+      "minutes": 672,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:15",
+      "minutes": 675,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:15",
+      "minutes": 675,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:19",
+      "minutes": 679,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:20",
+      "minutes": 680,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:20",
+      "minutes": 680,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:25",
+      "minutes": 685,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:25",
+      "minutes": 685,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:25",
+      "minutes": 685,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:30",
+      "minutes": 690,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:30",
+      "minutes": 690,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:32",
+      "minutes": 692,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:35",
+      "minutes": 695,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:35",
+      "minutes": 695,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:39",
+      "minutes": 699,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:40",
+      "minutes": 700,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:40",
+      "minutes": 700,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:45",
+      "minutes": 705,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:45",
+      "minutes": 705,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:45",
+      "minutes": 705,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:50",
+      "minutes": 710,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:50",
+      "minutes": 710,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "11:52",
+      "minutes": 712,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:55",
+      "minutes": 715,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:55",
+      "minutes": 715,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "11:59",
+      "minutes": 719,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:00",
+      "minutes": 720,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:00",
+      "minutes": 720,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:05",
+      "minutes": 725,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:05",
+      "minutes": 725,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:05",
+      "minutes": 725,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:10",
+      "minutes": 730,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:10",
+      "minutes": 730,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:12",
+      "minutes": 732,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:15",
+      "minutes": 735,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:15",
+      "minutes": 735,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:19",
+      "minutes": 739,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:20",
+      "minutes": 740,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:20",
+      "minutes": 740,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:25",
+      "minutes": 745,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:25",
+      "minutes": 745,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:25",
+      "minutes": 745,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:30",
+      "minutes": 750,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:30",
+      "minutes": 750,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:32",
+      "minutes": 752,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:35",
+      "minutes": 755,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:35",
+      "minutes": 755,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:39",
+      "minutes": 759,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:40",
+      "minutes": 760,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:40",
+      "minutes": 760,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:45",
+      "minutes": 765,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:45",
+      "minutes": 765,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:45",
+      "minutes": 765,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:50",
+      "minutes": 770,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:50",
+      "minutes": 770,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "12:52",
+      "minutes": 772,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:55",
+      "minutes": 775,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:55",
+      "minutes": 775,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "12:59",
+      "minutes": 779,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:00",
+      "minutes": 780,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:00",
+      "minutes": 780,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:05",
+      "minutes": 785,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:05",
+      "minutes": 785,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:05",
+      "minutes": 785,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:10",
+      "minutes": 790,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:10",
+      "minutes": 790,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:12",
+      "minutes": 792,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:15",
+      "minutes": 795,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:15",
+      "minutes": 795,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:19",
+      "minutes": 799,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:20",
+      "minutes": 800,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:20",
+      "minutes": 800,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:25",
+      "minutes": 805,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:25",
+      "minutes": 805,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:25",
+      "minutes": 805,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:30",
+      "minutes": 810,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:30",
+      "minutes": 810,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:32",
+      "minutes": 812,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:35",
+      "minutes": 815,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:35",
+      "minutes": 815,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:39",
+      "minutes": 819,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:40",
+      "minutes": 820,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:40",
+      "minutes": 820,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:45",
+      "minutes": 825,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:45",
+      "minutes": 825,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:45",
+      "minutes": 825,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:50",
+      "minutes": 830,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:50",
+      "minutes": 830,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "13:52",
+      "minutes": 832,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:55",
+      "minutes": 835,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:55",
+      "minutes": 835,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "13:59",
+      "minutes": 839,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:00",
+      "minutes": 840,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:00",
+      "minutes": 840,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:05",
+      "minutes": 845,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:05",
+      "minutes": 845,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:05",
+      "minutes": 845,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:10",
+      "minutes": 850,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:10",
+      "minutes": 850,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:12",
+      "minutes": 852,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:15",
+      "minutes": 855,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:15",
+      "minutes": 855,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:19",
+      "minutes": 859,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:20",
+      "minutes": 860,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:20",
+      "minutes": 860,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:25",
+      "minutes": 865,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:25",
+      "minutes": 865,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:25",
+      "minutes": 865,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:30",
+      "minutes": 870,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:30",
+      "minutes": 870,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:32",
+      "minutes": 872,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:35",
+      "minutes": 875,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:35",
+      "minutes": 875,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:39",
+      "minutes": 879,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:40",
+      "minutes": 880,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:40",
+      "minutes": 880,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:45",
+      "minutes": 885,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:45",
+      "minutes": 885,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:45",
+      "minutes": 885,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:50",
+      "minutes": 890,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:50",
+      "minutes": 890,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "14:52",
+      "minutes": 892,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:55",
+      "minutes": 895,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:55",
+      "minutes": 895,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "14:59",
+      "minutes": 899,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:00",
+      "minutes": 900,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:00",
+      "minutes": 900,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:05",
+      "minutes": 905,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:05",
+      "minutes": 905,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:05",
+      "minutes": 905,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:10",
+      "minutes": 910,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:10",
+      "minutes": 910,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:12",
+      "minutes": 912,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:15",
+      "minutes": 915,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:15",
+      "minutes": 915,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:19",
+      "minutes": 919,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:20",
+      "minutes": 920,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:20",
+      "minutes": 920,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:25",
+      "minutes": 925,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:25",
+      "minutes": 925,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:25",
+      "minutes": 925,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:30",
+      "minutes": 930,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:30",
+      "minutes": 930,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:32",
+      "minutes": 932,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:35",
+      "minutes": 935,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:35",
+      "minutes": 935,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:39",
+      "minutes": 939,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:40",
+      "minutes": 940,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:40",
+      "minutes": 940,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:45",
+      "minutes": 945,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:45",
+      "minutes": 945,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:45",
+      "minutes": 945,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:50",
+      "minutes": 950,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:50",
+      "minutes": 950,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "15:52",
+      "minutes": 952,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:55",
+      "minutes": 955,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:55",
+      "minutes": 955,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "15:59",
+      "minutes": 959,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:00",
+      "minutes": 960,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:00",
+      "minutes": 960,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:05",
+      "minutes": 965,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:05",
+      "minutes": 965,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:05",
+      "minutes": 965,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:10",
+      "minutes": 970,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:10",
+      "minutes": 970,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:12",
+      "minutes": 972,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:15",
+      "minutes": 975,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:15",
+      "minutes": 975,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:19",
+      "minutes": 979,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:20",
+      "minutes": 980,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:20",
+      "minutes": 980,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:25",
+      "minutes": 985,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:25",
+      "minutes": 985,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:25",
+      "minutes": 985,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:30",
+      "minutes": 990,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:30",
+      "minutes": 990,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:32",
+      "minutes": 992,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:35",
+      "minutes": 995,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:35",
+      "minutes": 995,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:39",
+      "minutes": 999,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:40",
+      "minutes": 1000,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:40",
+      "minutes": 1000,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:45",
+      "minutes": 1005,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:45",
+      "minutes": 1005,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:45",
+      "minutes": 1005,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:50",
+      "minutes": 1010,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:50",
+      "minutes": 1010,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "16:52",
+      "minutes": 1012,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:55",
+      "minutes": 1015,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:55",
+      "minutes": 1015,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "16:59",
+      "minutes": 1019,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:00",
+      "minutes": 1020,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:00",
+      "minutes": 1020,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:05",
+      "minutes": 1025,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:05",
+      "minutes": 1025,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:05",
+      "minutes": 1025,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:10",
+      "minutes": 1030,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:10",
+      "minutes": 1030,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:10",
+      "minutes": 1030,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:15",
+      "minutes": 1035,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:15",
+      "minutes": 1035,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:15",
+      "minutes": 1035,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:20",
+      "minutes": 1040,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:20",
+      "minutes": 1040,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:20",
+      "minutes": 1040,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:25",
+      "minutes": 1045,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:25",
+      "minutes": 1045,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:25",
+      "minutes": 1045,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:30",
+      "minutes": 1050,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:30",
+      "minutes": 1050,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:30",
+      "minutes": 1050,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:35",
+      "minutes": 1055,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:35",
+      "minutes": 1055,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:35",
+      "minutes": 1055,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:40",
+      "minutes": 1060,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:40",
+      "minutes": 1060,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:40",
+      "minutes": 1060,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:45",
+      "minutes": 1065,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:45",
+      "minutes": 1065,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:45",
+      "minutes": 1065,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:50",
+      "minutes": 1070,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:50",
+      "minutes": 1070,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:50",
+      "minutes": 1070,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "17:55",
+      "minutes": 1075,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:55",
+      "minutes": 1075,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "17:55",
+      "minutes": 1075,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:00",
+      "minutes": 1080,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:00",
+      "minutes": 1080,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:00",
+      "minutes": 1080,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:05",
+      "minutes": 1085,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:05",
+      "minutes": 1085,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:05",
+      "minutes": 1085,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:10",
+      "minutes": 1090,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:10",
+      "minutes": 1090,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:10",
+      "minutes": 1090,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:15",
+      "minutes": 1095,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:15",
+      "minutes": 1095,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:15",
+      "minutes": 1095,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:20",
+      "minutes": 1100,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:20",
+      "minutes": 1100,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:20",
+      "minutes": 1100,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:25",
+      "minutes": 1105,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:25",
+      "minutes": 1105,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:25",
+      "minutes": 1105,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:30",
+      "minutes": 1110,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:30",
+      "minutes": 1110,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:30",
+      "minutes": 1110,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:35",
+      "minutes": 1115,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:35",
+      "minutes": 1115,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:35",
+      "minutes": 1115,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:40",
+      "minutes": 1120,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:40",
+      "minutes": 1120,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:40",
+      "minutes": 1120,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:45",
+      "minutes": 1125,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:45",
+      "minutes": 1125,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:45",
+      "minutes": 1125,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:50",
+      "minutes": 1130,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:50",
+      "minutes": 1130,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:50",
+      "minutes": 1130,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "18:55",
+      "minutes": 1135,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:55",
+      "minutes": 1135,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:55",
+      "minutes": 1135,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "18:57",
+      "minutes": 1137,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "19:00",
+      "minutes": 1140,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:00",
+      "minutes": 1140,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:00",
+      "minutes": 1140,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:05",
+      "minutes": 1145,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:05",
+      "minutes": 1145,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:06",
+      "minutes": 1146,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:10",
+      "minutes": 1150,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:10",
+      "minutes": 1150,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:12",
+      "minutes": 1152,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:15",
+      "minutes": 1155,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:15",
+      "minutes": 1155,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:18",
+      "minutes": 1158,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:20",
+      "minutes": 1160,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:20",
+      "minutes": 1160,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:24",
+      "minutes": 1164,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:25",
+      "minutes": 1165,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:25",
+      "minutes": 1165,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:30",
+      "minutes": 1170,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:30",
+      "minutes": 1170,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:30",
+      "minutes": 1170,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:35",
+      "minutes": 1175,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:35",
+      "minutes": 1175,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:36",
+      "minutes": 1176,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:40",
+      "minutes": 1180,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:40",
+      "minutes": 1180,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:42",
+      "minutes": 1182,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:45",
+      "minutes": 1185,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:45",
+      "minutes": 1185,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:48",
+      "minutes": 1188,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:50",
+      "minutes": 1190,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:50",
+      "minutes": 1190,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:54",
+      "minutes": 1194,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "19:55",
+      "minutes": 1195,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:55",
+      "minutes": 1195,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "19:58",
+      "minutes": 1198,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "19:58",
+      "minutes": 1198,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "20:00",
+      "minutes": 1200,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:05",
+      "minutes": 1205,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:05",
+      "minutes": 1205,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:08",
+      "minutes": 1208,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:10",
+      "minutes": 1210,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:10",
+      "minutes": 1210,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:11",
+      "minutes": 1211,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "20:15",
+      "minutes": 1215,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:15",
+      "minutes": 1215,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:15",
+      "minutes": 1215,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:22",
+      "minutes": 1222,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:22",
+      "minutes": 1222,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:23",
+      "minutes": 1223,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:30",
+      "minutes": 1230,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:30",
+      "minutes": 1230,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:30",
+      "minutes": 1230,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:37",
+      "minutes": 1237,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:37",
+      "minutes": 1237,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:38",
+      "minutes": 1238,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:45",
+      "minutes": 1245,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:45",
+      "minutes": 1245,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:45",
+      "minutes": 1245,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "20:53",
+      "minutes": 1253,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:53",
+      "minutes": 1253,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "20:53",
+      "minutes": 1253,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:00",
+      "minutes": 1260,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:02",
+      "minutes": 1262,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:02",
+      "minutes": 1262,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:08",
+      "minutes": 1268,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:10",
+      "minutes": 1270,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:10",
+      "minutes": 1270,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:15",
+      "minutes": 1275,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:17",
+      "minutes": 1277,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:17",
+      "minutes": 1277,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:20",
+      "minutes": 1280,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "21:20",
+      "minutes": 1280,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "21:23",
+      "minutes": 1283,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:25",
+      "minutes": 1285,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:25",
+      "minutes": 1285,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:30",
+      "minutes": 1290,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:32",
+      "minutes": 1292,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:32",
+      "minutes": 1292,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:38",
+      "minutes": 1298,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:41",
+      "minutes": 1301,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:41",
+      "minutes": 1301,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:45",
+      "minutes": 1305,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:48",
+      "minutes": 1308,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "熊本駅前"
+    },
+    {
+      "time": "21:49",
+      "minutes": 1309,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "21:54",
+      "minutes": 1314,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "21:58",
+      "minutes": 1318,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:00",
+      "minutes": 1320,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:02",
+      "minutes": 1322,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "22:02",
+      "minutes": 1322,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:06",
+      "minutes": 1326,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "熊本駅前・田崎橋"
+    },
+    {
+      "time": "22:11",
+      "minutes": 1331,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:12",
+      "minutes": 1332,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:14",
+      "minutes": 1334,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:20",
+      "minutes": 1340,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:20",
+      "minutes": 1340,
+      "serviceId": "日祝",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:28",
+      "minutes": 1348,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:31",
+      "minutes": 1351,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:32",
+      "minutes": 1352,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:37",
+      "minutes": 1357,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:43",
+      "minutes": 1363,
+      "serviceId": "土曜",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:45",
+      "minutes": 1365,
+      "serviceId": "平日",
+      "route": "B系統",
+      "headsign": "上熊本"
+    },
+    {
+      "time": "22:45",
+      "minutes": 1365,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:57",
+      "minutes": 1377,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:57",
+      "minutes": 1377,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "22:57",
+      "minutes": 1377,
+      "serviceId": "日祝",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "23:05",
+      "minutes": 1385,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "23:11",
+      "minutes": 1391,
+      "serviceId": "土曜",
+      "route": "A系統",
+      "headsign": "交通局前"
+    },
+    {
+      "time": "23:12",
+      "minutes": 1392,
+      "serviceId": "平日",
+      "route": "A系統",
+      "headsign": "交通局前"
+    }
+  ]
+}

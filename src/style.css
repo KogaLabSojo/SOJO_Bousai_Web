@@ -743,3 +743,166 @@ body.warehouse-on #slam-feed {
 .wh-overview-link small {
   color: var(--muted);
 }
+
+/* ---------- 健軍交差点アート ---------- */
+#kengun-hud {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+#kengun-hud > * {
+  pointer-events: auto;
+}
+
+#kengun-hud[hidden] {
+  display: none !important;
+}
+
+.kengun-signal {
+  margin: calc(env(safe-area-inset-top) + 56px) 12px 0;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: rgba(12, 18, 32, 0.72);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+}
+
+.kengun-place {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.kengun-signal-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.kengun-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.kengun-light.red {
+  background: rgba(255, 77, 79, 0.25);
+  color: #ff8a8a;
+}
+
+.kengun-light.green {
+  background: rgba(61, 220, 132, 0.22);
+  color: #3ddc84;
+}
+
+.kengun-light.blink {
+  background: rgba(255, 196, 107, 0.25);
+  color: #ffc46b;
+  animation: kengun-blink 0.7s ease-in-out infinite;
+}
+
+.kengun-light.unknown {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+}
+
+@keyframes kengun-blink {
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.kengun-remain {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+#kengun-remain-unit {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.kengun-poem {
+  margin: 10px 0 4px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #f2e6d4;
+}
+
+.kengun-source {
+  margin: 0;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.kengun-tram {
+  margin: 8px 12px 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(12, 18, 32, 0.65);
+  border: 1px solid var(--line);
+}
+
+.kengun-tram-label {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.kengun-tram-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+}
+
+.kengun-tram-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.kengun-tram-row b {
+  color: #5eb0ff;
+}
+
+.kengun-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  padding: 10px 12px calc(env(safe-area-inset-bottom) + 12px);
+}
+
+.kengun-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.08);
+  font-weight: 700;
+}
+
+.kengun-actions button.primary {
+  background: var(--accent);
+  color: #1a1200;
+  border-color: transparent;
+}
+
+.kengun-safety {
+  margin: 0 12px 8px;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}

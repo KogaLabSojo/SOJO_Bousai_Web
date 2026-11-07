@@ -57,6 +57,13 @@
               <small>「防」マークをカメラで読み取り、収納品を確認</small>
             </span>
           </button>
+          <button class="card" id="btn-kengun">
+            <span class="card-icon">🚦</span>
+            <span class="card-body">
+              <strong>健軍交差点アート</strong>
+              <small>信号待ちをトンネルラジオの立体ARに</small>
+            </span>
+          </button>
         </div>
         <div class="hazard">
           <button id="btn-hazard" class="ghost">📍 この場所の浸水想定を調べる</button>
@@ -68,6 +75,8 @@
           <a href="https://github.com/8thwall/engine/blob/main/LICENSE" target="_blank" rel="noopener">license &amp; disclaimer of warranties</a>
           <br />
           画像トラッキング: <a href="https://github.com/hiukim/mind-ar-js" target="_blank" rel="noopener">MindAR.js</a>
+          <br />
+          健軍アート: 高度化PICS / 熊本市交通局 GTFS
         </p>
       </section>
 
@@ -111,6 +120,32 @@
           </header>
           <div id="warehouse-panel-body" class="warehouse-panel-body"></div>
         </aside>
+      </section>
+
+      <section id="kengun-hud" hidden>
+        <header class="hud-top">
+          <button id="btn-kengun-back" class="ghost">← メニュー</button>
+          <h2>健軍交差点アート</h2>
+        </header>
+        <div class="kengun-signal">
+          <p id="kengun-place" class="kengun-place">市電健軍終点交差点</p>
+          <div class="kengun-signal-row">
+            <span id="kengun-light" class="kengun-light red">赤</span>
+            <span id="kengun-remain" class="kengun-remain">--</span>
+            <small id="kengun-remain-unit">秒</small>
+          </div>
+          <p id="kengun-poem" class="kengun-poem"></p>
+          <p id="kengun-source" class="kengun-source">デモ</p>
+        </div>
+        <div class="kengun-tram">
+          <p class="kengun-tram-label">次の市電・健軍町</p>
+          <div id="kengun-tram-list" class="kengun-tram-list"></div>
+        </div>
+        <div class="kengun-actions">
+          <button id="btn-kengun-demo" class="primary">デモで体験</button>
+          <button id="btn-kengun-ble" class="ghost">PICS受信</button>
+        </div>
+        <p id="kengun-safety" class="kengun-safety"></p>
       </section>
 
       <div id="loading" hidden><div class="spinner"></div><p>読み込み中…</p></div>

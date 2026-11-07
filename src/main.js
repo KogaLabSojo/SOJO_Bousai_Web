@@ -36,6 +36,7 @@ const el = {
   warehouseScan: $('#warehouse-scan'),
   warehousePanel: $('#warehouse-panel'),
   warehouseHint: $('#warehouse-hint'),
+  kengunHud: $('#kengun-hud'),
 };
 
 const stage = new Stage($('#scene'));
@@ -50,7 +51,7 @@ const forcedMode = new URLSearchParams(location.search).get('ar');
 
 let xrSupported = false;
 let slamCandidate = false;
-let mode = null; // 'xr' | 'slam' | 'fallback' | 'warehouse'
+let mode = null; // 'xr' | 'slam' | 'fallback' | 'warehouse' | 'kengun'
 let scenario = null;
 let placed = false;
 let busy = false;
@@ -58,6 +59,12 @@ let exiting = false;
 let pendingPlaceSince = 0;
 let warehouseScan = null;
 let warehouseGuide = null;
+let kengunArt = null;
+let picsSource = null;
+let PicsSourceClass = null;
+let tramSchedule = null;
+let kengunSignal = { state: 'Unknown', remaining: -1 };
+let kengunUnsub = null;
 
 const ctx = {
   stage,
@@ -107,6 +114,151 @@ $('#btn-hazard').addEventListener('click', () => checkHazard());
 $('#btn-warehouse').addEventListener('click', () => startWarehouse());
 $('#btn-warehouse-back').addEventListener('click', () => exitWarehouse());
 $('#btn-warehouse-close').addEventListener('click', () => warehouseScan?.closePanel());
+$('#btn-kengun').addEventListener('click', () => startKengun());
+$('#btn-kengun-back').addEventListener('click', () => exitKengun());
+$('#btn-kengun-demo').addEventListener('click', () => startKengunPics('demo'));
+$('#btn-kengun-ble').addEventListener('click', () => startKengunPics('ble'));
+
+async function startKengun() {
+  if (busy) return;
+  busy = true;
+  audio.unlock();
+  el.menu.hidden = true;
+  el.hud.hidden = true;
+  el.warehouseHud.hidden = true;
+  el.kengunHud.hidden = false;
+  mode = 'kengun';
+  ctx.mode = mode;
+  setLoading(true);
+  try {
+    const [{ KengunArt }, { PicsSource, SIGNAL_LABELS }, { TramSchedule }, { KENGUN }] = await Promise.all([
+      import('./core/KengunArt.js'),
+      import('./core/PicsBle.js'),
+      import('./core/TramSchedule.js'),
+      import('./content/kengun.js'),
+    ]);
+    PicsSourceClass = PicsSource;
+    window.__kengunLabels = SIGNAL_LABELS;
+    $('#kengun-place').textContent = KENGUN.intersectionName;
+    $('#kengun-safety').textContent = `${KENGUN.safety}\n${KENGUN.credits.join(' / ')}`;
+    $('#kengun-poem').textContent = KENGUN.poem.waiting;
+
+    tramSchedule ??= await TramSchedule.load();
+    renderKengunTram();
+
+    kengunArt ??= new KengunArt(stage);
+    picsSource ??= new PicsSource();
+    kengunUnsub?.();
+    kengunUnsub = picsSource.onUpdate((sig) => {
+      kengunSignal = sig;
+      renderKengunSignal(sig);
+    });
+
+    // カメラは簡易AR（ジャイロ）で開始。災害シナリオの配置は使わない
+    await FallbackController.requestOrientationPermission();
+    await fallback.start();
+    stage.anchor.visible = false;
+    kengunArt.start();
+    picsSource.startDemo();
+    $('#btn-kengun-ble').disabled = !PicsSource.bleAvailable() && !PicsSource.watchAvailable();
+    if ($('#btn-kengun-ble').disabled) {
+      $('#btn-kengun-ble').title = 'この端末では Web Bluetooth の広告受信に対応していません';
+    }
+  } catch (err) {
+    console.error(err);
+    toast('開始できませんでした。\nカメラ権限を確認してください。');
+    await exitKengun();
+    busy = false;
+    return;
+  } finally {
+    setLoading(false);
+  }
+  busy = false;
+}
+
+async function startKengunPics(kind) {
+  if (!picsSource || !PicsSourceClass) return;
+  audio.unlock();
+  try {
+    if (kind === 'demo') {
+      picsSource.startDemo();
+      toast('デモ信号で再生中');
+      return;
+    }
+    if (PicsSourceClass.bleAvailable()) {
+      await picsSource.startBleScan();
+      toast('PICS スキャンを開始しました');
+    } else if (PicsSourceClass.watchAvailable()) {
+      await picsSource.startBleWatch();
+      toast('選択した機器を監視中');
+    } else {
+      toast('BLE非対応のためデモに切り替えます');
+      picsSource.startDemo();
+    }
+  } catch (err) {
+    console.error(err);
+    toast('受信を開始できませんでした。\nデモで続けます。');
+    picsSource.startDemo();
+  }
+}
+
+function renderKengunSignal(sig) {
+  const labels = window.__kengunLabels || {};
+  const light = $('#kengun-light');
+  const state = sig.state || 'Unknown';
+  light.textContent = labels[state] || state;
+  light.className = 'kengun-light ' + (state === 'Green' ? 'green' : state === 'BlinkGreen' ? 'blink' : state === 'Red' ? 'red' : 'unknown');
+  const rem = sig.remaining;
+  $('#kengun-remain').textContent = rem >= 0 ? String(rem) : '—';
+  $('#kengun-remain-unit').textContent = rem >= 0 ? '秒（参考）' : '';
+  const src =
+    sig.source === 'ble'
+      ? '高度化PICS 受信中'
+      : sig.source === 'demo'
+        ? 'デモ（合成信号）'
+        : '';
+  $('#kengun-source').textContent = src;
+  if (kengunArt) $('#kengun-poem').textContent = kengunArt.poemLine;
+}
+
+function renderKengunTram() {
+  const list = $('#kengun-tram-list');
+  if (!tramSchedule || !list) return;
+  const next = tramSchedule.nextDepartures(new Date(), 3);
+  if (!next.length) {
+    list.innerHTML = '<p>本日の発車はありません</p>';
+    return;
+  }
+  list.innerHTML = next
+    .map((d) => {
+      const m = Math.floor(d.etaSec / 60);
+      const s = d.etaSec % 60;
+      const eta = m > 0 ? `${m}分${s}秒` : `${s}秒`;
+      return `<div class="kengun-tram-row"><b>${d.time}</b><span>${escapeHtml(d.route)} ${escapeHtml(d.headsign)}</span><span>${eta}</span></div>`;
+    })
+    .join('');
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
+
+async function exitKengun() {
+  kengunUnsub?.();
+  kengunUnsub = null;
+  picsSource?.stop();
+  kengunArt?.stop();
+  stage.anchor.visible = true;
+  if (mode === 'kengun') fallback.stop();
+  document.body.classList.remove('camera-on');
+  el.kengunHud.hidden = true;
+  el.menu.hidden = false;
+  mode = null;
+  ctx.mode = null;
+}
 
 async function startWarehouse() {
   if (busy) return;
@@ -512,6 +664,20 @@ stage.renderer.setAnimationLoop((_time, frame) => {
   const dt = Math.min(0.05, (now - last) / 1000);
   last = now;
   if (!mode || mode === 'warehouse') return;
+
+  if (mode === 'kengun') {
+    fallback.shake = 0;
+    fallback.update(dt);
+    const next = tramSchedule?.nextDepartures(new Date(), 1)[0] || null;
+    kengunArt?.update(dt, kengunSignal, next);
+    if (now - lastStatus > 500) {
+      renderKengunTram();
+      if (kengunArt) $('#kengun-poem').textContent = kengunArt.poemLine;
+      lastStatus = now;
+    }
+    stage.renderer.render(stage.scene, stage.camera);
+    return;
+  }
 
   if (mode === 'xr') {
     xr.update(frame);
